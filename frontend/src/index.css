@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-background text-text font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-background px-6 py-3 rounded hover:bg-primary-hover transition-colors font-medium tracking-wide;
+  }
+  .btn-secondary {
+    @apply bg-transparent border border-primary text-primary px-6 py-3 rounded hover:bg-primary hover:text-background transition-colors font-medium tracking-wide;
+  }
+}
