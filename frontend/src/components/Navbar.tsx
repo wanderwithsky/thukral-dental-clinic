@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
@@ -16,11 +16,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '#about' },
-    { name: 'Treatments', path: '#treatments' },
-    { name: 'Why Thukral', path: '#why-thukral' },
-    { name: 'Reviews', path: '#reviews' },
-    { name: 'Contact', path: '#contact' },
+    { name: 'About', path: '/#about' },
+    { name: 'Treatments', path: '/treatments' },
+    { name: 'Why Thukral', path: '/#why-thukral' },
+    { name: 'Reviews', path: '/#reviews' },
+    { name: 'Contact', path: '/#contact' },
   ];
 
   return (
@@ -31,14 +31,21 @@ const Navbar = () => {
           : 'bg-transparent py-6'
       }`}
     >
-      <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-        <Link to="/" className="flex flex-col z-50">
-          <span className="font-serif font-bold text-xl md:text-2xl tracking-wide leading-tight text-text">
-            THUKRAL
-          </span>
-          <span className="text-xs uppercase tracking-[0.2em] text-text-muted mt-1">
-            Dental & Aesthetic Clinic
-          </span>
+      <div className="page-container flex justify-between items-center">
+        <Link to="/" className="flex items-center space-x-3 md:space-x-4 z-50">
+          <img 
+            src="/logo.jpeg" 
+            alt="Thukral Clinic Logo" 
+            className="h-10 md:h-12 w-auto object-contain mix-blend-multiply"
+          />
+          <div className="flex flex-col">
+            <span className="font-serif font-bold text-xl md:text-2xl tracking-wide leading-tight text-text">
+              THUKRAL
+            </span>
+            <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-text-muted mt-0.5">
+              Dental & Aesthetic Clinic
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
@@ -46,18 +53,32 @@ const Navbar = () => {
           <ul className="flex space-x-8">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a 
-                  href={link.path} 
-                  className="text-text hover:text-primary transition-colors text-sm font-medium tracking-wide"
-                >
-                  {link.name}
-                </a>
+                {link.path.startsWith('/#') ? (
+                  <a 
+                    href={link.path} 
+                    className="text-text hover:text-primary transition-colors text-sm font-medium tracking-wide"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <NavLink 
+                    to={link.path} 
+                    end={link.path === '/'}
+                    className={({ isActive }) => 
+                      `text-sm font-medium tracking-wide transition-colors ${
+                        isActive ? 'text-primary border-b-2 border-primary pb-1' : 'text-text hover:text-primary'
+                      }`
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
-          <a href="#appointment" className="btn-primary">
+          <Link to="/appointment" className="btn-primary">
             Book Appointment
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -78,23 +99,38 @@ const Navbar = () => {
           <ul className="flex flex-col items-center space-y-8 mb-12">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a 
-                  href={link.path} 
-                  className="text-2xl font-serif text-text hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
+                {link.path.startsWith('/#') ? (
+                  <a 
+                    href={link.path} 
+                    className="text-2xl font-serif text-text hover:text-primary transition-colors"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <NavLink 
+                    to={link.path} 
+                    end={link.path === '/'}
+                    className={({ isActive }) => 
+                      `text-2xl font-serif transition-colors ${
+                        isActive ? 'text-primary' : 'text-text hover:text-primary'
+                      }`
+                    }
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </NavLink>
+                )}
               </li>
             ))}
           </ul>
-          <a 
-            href="#appointment" 
+          <Link 
+            to="/appointment" 
             className="btn-primary w-3/4 text-center text-lg"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Book Appointment
-          </a>
+          </Link>
         </div>
       </div>
     </header>

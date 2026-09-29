@@ -20,4 +20,13 @@
   .btn-secondary {
     @apply bg-transparent border border-primary text-primary px-6 py-3 rounded hover:bg-primary hover:text-background transition-colors font-medium tracking-wide;
   }
+  
+  .page-container {
+    width: 100%;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1.5rem, 5vw, 4rem);
+    padding-right: clamp(1.5rem, 5vw, 4rem);
+  }
 }
