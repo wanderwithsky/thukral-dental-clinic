@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import AppointmentPopup from '../components/AppointmentPopup';
 
 interface LayoutProps {
   children: ReactNode;
@@ -12,6 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
       <Navbar />
       <main className="flex-grow">{children}</main>
       <Footer />
+      <AppointmentPopup />
     </div>
   );
 };

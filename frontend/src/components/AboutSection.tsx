@@ -5,9 +5,11 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="order-2 md:order-1 relative">
             <div className="aspect-[4/5] w-full max-w-md mx-auto bg-background-secondary border border-border rounded-lg overflow-hidden flex items-center justify-center">
-              <span className="text-text-muted text-sm font-medium">
-                [Clinic/Patient Comfort Image]
-              </span>
+              <img 
+                src="https://res.cloudinary.com/zvlxacfu/image/upload/v1790667607/82e8902d-7d55-4b0c-b2bf-bb3345753b19.png" 
+                alt="Clinic / Patient Comfort" 
+                className="w-full h-full object-cover" 
+              />
             </div>
             <div className="absolute -bottom-8 -right-8 w-48 aspect-square bg-primary/10 rounded-full blur-3xl -z-10"></div>
           </div>

@@ -49,9 +49,16 @@ const AppointmentForm = () => {
               </div>
             </div>
             
-            {/* Map Placeholder */}
-            <div className="mt-12 w-full aspect-video bg-background-secondary border border-border rounded-lg flex items-center justify-center">
-              <span className="text-text-muted text-sm">[Google Maps Embed]</span>
+            {/* Map Embed */}
+            <div className="mt-12 w-full aspect-video bg-background-secondary border border-border rounded-lg overflow-hidden flex items-center justify-center">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d83155.20206765059!2d82.97306198908954!3d25.322048614237637!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e09989ce75f%3A0xfaa6fa6b95356a4f!2sThukral%20Dental%20%26%20Aesthetic%20Clinic!5e0!3m2!1sen!2sin!4v1790668813204!5m2!1sen!2sin"
+                className="w-full h-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Thukral Dental & Aesthetic Clinic Location"
+              ></iframe>
             </div>
           </div>
 

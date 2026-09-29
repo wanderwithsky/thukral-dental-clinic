@@ -49,18 +49,20 @@ const Hero = () => {
         </div>
 
         {/* Right Visual Composition (50-55%) - Order 1 on mobile, 2 on desktop */}
-        <div className="w-full lg:w-[52%] h-[60vh] sm:h-[65vh] lg:h-full flex justify-center lg:justify-end items-end relative opacity-0 animate-fade-in-up order-1 lg:order-2 pt-2 lg:pt-0 mb-6 lg:mb-0" style={{ animationDelay: '0.3s' }}>
+        <div className="w-full lg:w-[52%] h-auto lg:h-full flex justify-center lg:justify-end items-end relative opacity-0 animate-fade-in-up order-1 lg:order-2 pt-2 lg:pt-0 mb-6 lg:mb-0" style={{ animationDelay: '0.3s' }}>
           
           {/* Doctor Portrait (Primary) - Stretching to bottom */}
-          <div className="relative w-[90vw] sm:w-[80vw] left-1/2 -translate-x-1/2 lg:w-auto lg:left-auto lg:translate-x-0 h-full lg:h-[82vh] xl:h-[85vh] flex items-end justify-center lg:justify-end group cursor-default z-10">
+          <div className="relative w-[90vw] sm:w-[80vw] left-1/2 -translate-x-1/2 lg:w-auto lg:left-auto lg:translate-x-0 h-auto lg:h-[82vh] xl:h-[85vh] flex items-end justify-center lg:justify-end group cursor-default z-10">
             
             {/* The Real Doctor Image (Transparent Cutout) */}
-            <img 
-              src="/hero-img.png" 
-              alt="Dr. Anchit Thukral" 
-              className="relative z-10 w-full lg:w-auto h-full max-w-none object-contain object-bottom transform transition-all duration-700 lg:group-hover:scale-[1.01] lg:group-hover:-translate-y-1 origin-bottom"
-              style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}
-            />
+            <picture className="relative z-10 w-full lg:w-auto h-auto lg:h-full max-w-none flex justify-center items-end transform transition-all duration-700 lg:group-hover:scale-[1.01] lg:group-hover:-translate-y-1 origin-bottom" style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}>
+              <source media="(min-width: 1024px)" srcSet="/hero-img.png" />
+              <img 
+                src="/hero-img-mobile.png" 
+                alt="Dr. Anchit Thukral" 
+                className="w-full lg:w-auto h-auto lg:h-full object-contain object-bottom"
+              />
+            </picture>
             
             {/* Rotating Appointment Circle */}
             <Link to="/appointment" aria-label="Book an Appointment" className="absolute left-[-15vw] sm:-left-8 lg:-left-12 top-[45%] lg:top-[45%] -translate-y-1/2 z-20 w-24 h-24 lg:w-32 lg:h-32 rounded-full hidden lg:flex items-center justify-center group/circle transition-transform duration-500 cursor-pointer text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 opacity-0 animate-fade-in-up hover:scale-105" style={{ animationDelay: '0.6s' }}>

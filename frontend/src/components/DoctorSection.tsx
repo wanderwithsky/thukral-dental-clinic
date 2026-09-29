@@ -28,9 +28,11 @@ const DoctorSection = () => {
           
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-lg aspect-[3/4] bg-background border border-border rounded-lg overflow-hidden flex items-center justify-center">
-              <span className="text-text-muted text-sm font-medium">
-                [Dr. Anchit Thukral Portrait]
-              </span>
+              <img 
+                src="https://res.cloudinary.com/zvlxacfu/image/upload/v1790668147/228af05e-abc7-4bd3-a90c-699149f82de8.png" 
+                alt="Dr. Anchit Thukral" 
+                className="w-full h-full object-cover" 
+              />
             </div>
           </div>
         </div>
