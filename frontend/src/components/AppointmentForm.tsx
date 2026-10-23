@@ -18,8 +18,8 @@ const AppointmentForm = () => {
   };
 
   return (
-    <section id="appointment" className="py-24 bg-background">
-      <div className="container mx-auto px-4 md:px-8">
+    <section id="contact" className="py-24 bg-background scroll-mt-20">
+      <div id="appointment" className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col lg:flex-row gap-16">
           
           {/* Location Info */}
@@ -27,6 +27,19 @@ const AppointmentForm = () => {
             <h2 className="text-4xl md:text-5xl font-serif text-text mb-6">
               Find Us in Varanasi
             </h2>
+
+            {/* Map Embed - Positioned directly below heading */}
+            <div className="mb-8 w-full aspect-video bg-background-secondary border border-border rounded-lg overflow-hidden flex items-center justify-center shadow-xs">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d83155.20206765059!2d82.97306198908954!3d25.322048614237637!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e09989ce75f%3A0xfaa6fa6b95356a4f!2sThukral%20Dental%20%26%20Aesthetic%20Clinic!5e0!3m2!1sen!2sin!4v1790668813204!5m2!1sen!2sin"
+                className="w-full h-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="Thukral Dental & Aesthetic Clinic Location"
+              ></iframe>
+            </div>
+
             <div className="space-y-6 text-text-muted text-lg font-light">
               <address className="not-italic">
                 <p>C 21/30 B-1A, Pishachmochan</p>
@@ -37,7 +50,7 @@ const AppointmentForm = () => {
                   082997 19955
                 </a>
               </p>
-              <div className="pt-4">
+              <div className="pt-2">
                 <a 
                   href="https://maps.google.com/?q=Thukral+Dental+Clinic+Varanasi" 
                   target="_blank" 
@@ -47,18 +60,6 @@ const AppointmentForm = () => {
                   GET DIRECTIONS
                 </a>
               </div>
-            </div>
-            
-            {/* Map Embed */}
-            <div className="mt-12 w-full aspect-video bg-background-secondary border border-border rounded-lg overflow-hidden flex items-center justify-center">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d83155.20206765059!2d82.97306198908954!3d25.322048614237637!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e09989ce75f%3A0xfaa6fa6b95356a4f!2sThukral%20Dental%20%26%20Aesthetic%20Clinic!5e0!3m2!1sen!2sin!4v1790668813204!5m2!1sen!2sin"
-                className="w-full h-full border-0"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="strict-origin-when-cross-origin"
-                title="Thukral Dental & Aesthetic Clinic Location"
-              ></iframe>
             </div>
           </div>
 

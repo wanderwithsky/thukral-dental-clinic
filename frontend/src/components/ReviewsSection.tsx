@@ -180,7 +180,12 @@ const ReviewsSection = () => {
 
       <div className="container mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <a href="#" className="btn-secondary inline-block">
+          <a 
+            href="https://share.google/xSY5nTuYnGBJVbmUy" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn-secondary inline-block"
+          >
             READ MORE REVIEWS
           </a>
         </div>

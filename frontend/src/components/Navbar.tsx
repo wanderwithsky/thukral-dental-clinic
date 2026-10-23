@@ -1,10 +1,29 @@
 import { useState, useEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { useAppointmentModal } from '../context/AppointmentModalContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { openModal } = useAppointmentModal();
+
+  const handleDropdownItemClick = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    if (location.pathname === '/treatments') {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        const y = section.getBoundingClientRect().top + window.scrollY - 100;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    } else {
+      navigate(`/treatments#${sectionId}`);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,9 +47,10 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Treatments', path: '/treatments' },
+    { name: 'Why Thukral', path: '/why-thukral' },
+    { name: 'Treatments', path: '/treatments', hasDropdown: true },
     { name: 'Testimonials', path: '/testimonials' },
-    { name: 'Contact', path: '/#contact' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -61,10 +81,41 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <ul className="flex space-x-8">
+          <ul className="flex items-center space-x-8">
             {navLinks.map((link) => (
               <li key={link.name}>
-                {link.path.startsWith('/#') ? (
+                {link.hasDropdown ? (
+                  <div className="relative group">
+                    <NavLink 
+                      to={link.path} 
+                      className={({ isActive }) => 
+                        `inline-flex items-center gap-1 text-sm font-medium tracking-wide transition-colors ${
+                          isActive ? 'text-primary border-b-2 border-primary pb-1' : 'text-text hover:text-primary'
+                        }`
+                      }
+                    >
+                      {link.name}
+                      <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
+                    </NavLink>
+                    
+                    <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                      <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-[200px] p-2 flex flex-col">
+                        <button 
+                          onClick={(e) => handleDropdownItemClick(e, 'services')}
+                          className="text-left px-4 py-3 text-sm font-medium text-text hover:text-primary hover:bg-background-secondary rounded-lg transition-colors w-full"
+                        >
+                          Services
+                        </button>
+                        <button 
+                          onClick={(e) => handleDropdownItemClick(e, 'transformations')}
+                          className="text-left px-4 py-3 text-sm font-medium text-text hover:text-primary hover:bg-background-secondary rounded-lg transition-colors w-full"
+                        >
+                          Transformations
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ) : link.path.startsWith('/#') ? (
                   <a 
                     href={link.path} 
                     className="text-text hover:text-primary transition-colors text-sm font-medium tracking-wide"
@@ -87,9 +138,13 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <Link to="/appointment" className="btn-primary">
+          <button 
+            type="button" 
+            onClick={openModal} 
+            className="btn-primary cursor-pointer"
+          >
             Book Appointment
-          </Link>
+          </button>
         </nav>
 
         {/* Mobile Menu Toggle (Header visible when menu closed) */}
@@ -134,7 +189,51 @@ const Navbar = () => {
           <ul className="flex flex-col space-y-7 w-full max-w-sm relative z-10">
             {navLinks.map((link, index) => (
               <li key={link.name} className="overflow-hidden shrink-0">
-                {link.path.startsWith('/#') ? (
+                {link.hasDropdown ? (
+                  <div className="flex flex-col space-y-4">
+                    <NavLink 
+                      to={link.path} 
+                      end={link.path === '/'}
+                      className={({ isActive }) => 
+                        `group flex items-baseline font-serif text-[32px] sm:text-4xl transition-all duration-500 transform ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'} ${isActive ? 'text-primary' : 'text-text hover:text-primary'}`
+                      }
+                      style={{ transitionDelay: `${index * 60 + 100}ms` }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {({ isActive }) => (
+                        <>
+                          <span className={`text-xs sm:text-sm font-sans mr-4 mb-1 transition-colors tracking-widest ${isActive ? 'text-primary' : 'text-text-muted/60 group-hover:text-primary'}`}>0{index + 1}</span>
+                          <span className="relative">
+                            {link.name}
+                            <span className={`absolute left-0 -bottom-1 h-[1px] bg-primary transition-all duration-500 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                          </span>
+                        </>
+                      )}
+                    </NavLink>
+                    
+                    {/* Mobile Sub-items */}
+                    <button
+                      onClick={(e) => handleDropdownItemClick(e, 'services')}
+                      className={`group flex items-baseline font-serif text-[24px] sm:text-3xl text-text hover:text-primary transition-all duration-500 transform pl-12 text-left ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
+                      style={{ transitionDelay: `${index * 60 + 130}ms` }}
+                    >
+                      <span className="relative">
+                        Services
+                        <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-primary transition-all duration-500 group-hover:w-full ease-out"></span>
+                      </span>
+                    </button>
+                    <button
+                      onClick={(e) => handleDropdownItemClick(e, 'transformations')}
+                      className={`group flex items-baseline font-serif text-[24px] sm:text-3xl text-text hover:text-primary transition-all duration-500 transform pl-12 text-left ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
+                      style={{ transitionDelay: `${index * 60 + 160}ms` }}
+                    >
+                      <span className="relative">
+                        Transformations
+                        <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-primary transition-all duration-500 group-hover:w-full ease-out"></span>
+                      </span>
+                    </button>
+                  </div>
+                ) : link.path.startsWith('/#') ? (
                   <a 
                     href={link.path} 
                     className={`group flex items-baseline font-serif text-[32px] sm:text-4xl text-text hover:text-primary transition-all duration-500 transform ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
@@ -180,15 +279,18 @@ const Navbar = () => {
 
         {/* Menu Footer CTA */}
         <div className="p-6 pb-8 bg-background relative z-10 border-t border-border/10 shrink-0">
-          <Link 
-            to="/appointment" 
-            className={`btn-primary w-full flex items-center justify-between text-base py-4 px-6 group transform transition-all duration-700 ease-out ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+          <button 
+            type="button"
+            className={`btn-primary w-full flex items-center justify-between text-base py-4 px-6 group transform transition-all duration-700 ease-out cursor-pointer ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             style={{ transitionDelay: `${navLinks.length * 60 + 150}ms` }}
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              openModal();
+            }}
           >
             <span className="font-medium tracking-widest">BOOK AN APPOINTMENT</span>
             <span className="text-xl font-serif transform transition-transform duration-500 group-hover:translate-x-2">&rarr;</span>
-          </Link>
+          </button>
         </div>
       </div>
     </>

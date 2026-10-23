@@ -17,10 +17,10 @@ const Home = () => {
       <TrustBar />
       <AboutSection />
       <DoctorSection />
+      <WhyThukral />
       <TreatmentsSection />
       <FeaturedSmileSection />
       <ReviewsSection />
-      <WhyThukral />
       <PatientJourney />
       <Gallery />
       <AppointmentForm />

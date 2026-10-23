@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const ImagePlaceholder = ({ label, className = "" }: { label: string, className?: string }) => (
-  <div className={`flex items-center justify-center bg-primary/5 border border-primary/10 rounded-2xl overflow-hidden p-8 text-center shadow-inner ${className}`}>
-    <span className="font-serif text-primary/60 text-lg md:text-xl tracking-wide">{label}</span>
-  </div>
-);
+
 
 const About = () => {
   useEffect(() => {
@@ -46,11 +42,12 @@ const About = () => {
 
             {/* Right Visual */}
             <div className="w-full lg:w-1/2 relative opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <div className="aspect-[3/4] md:aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-2xl border border-border/50 bg-background/50 flex items-center justify-center p-4">
+              <div className="aspect-square w-full rounded-2xl overflow-hidden shadow-2xl border border-border/80 bg-background-secondary">
                 <img 
-                  src="https://res.cloudinary.com/zvlxacfu/image/upload/v1790679545/0a90d7c4-51dd-4fae-b790-5eeb1914ed3c.png" 
-                  alt="Dr. Anchit Thukral Portrait" 
-                  className="w-full h-full object-contain drop-shadow-md"
+                  src="https://res.cloudinary.com/hmjaaen2/image/upload/v1792670446/2d2f280f-ee74-4dfd-87d5-6bf214fb019c.png" 
+                  alt="Dr. Anchit Thukral - Lead Dentist & Aesthetic Specialist" 
+                  className="w-full h-full object-cover object-center"
+                  loading="eager"
                 />
               </div>
               
@@ -120,94 +117,7 @@ const About = () => {
             
           </div>
         </div>
-      </section>
-
-      {/* 1.6 FIND US HERE - SOCIAL PRESENCE */}
-      <section className="py-24 lg:py-32 bg-background-secondary border-b border-border">
-        <div className="page-container">
-          <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24 opacity-0 animate-fade-in-up">
-            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-6 block">
-              FIND US HERE
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text mb-6">
-              Connect With Thukral
-            </h2>
-            <p className="text-base md:text-lg text-text-muted leading-relaxed font-light">
-              Stay connected with Thukral Dental & Aesthetic Clinic, explore our latest updates, patient experiences and clinic information across our social platforms.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            
-            {/* Instagram */}
-            <a href="https://www.instagram.com/thukraldentalclinic/" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center bg-background p-8 md:p-10 rounded-[2rem] border border-border/50 shadow-sm hover:shadow-xl hover:shadow-pink-500/5 hover:border-pink-500/20 hover:-translate-y-1 transition-all duration-500">
-              <div className="relative w-16 h-16 rounded-full border border-border flex items-center justify-center text-text-muted group-hover:border-pink-500/30 transition-colors duration-300 mb-6 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 group-hover:[stroke:url(#ig-grad)] transition-all duration-300">
-                  <defs>
-                    <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#f09433" />
-                      <stop offset="50%" stopColor="#dc2743" />
-                      <stop offset="100%" stopColor="#bc1888" />
-                    </linearGradient>
-                  </defs>
-                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
-                </svg>
-              </div>
-              <h3 className="text-xl font-serif text-text mb-3">Instagram</h3>
-              <p className="text-sm text-text-muted font-light leading-relaxed text-center mb-6">
-                Follow our latest updates, smiles and clinic moments.
-              </p>
-              <div className="mt-auto opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                <span className="bg-clip-text text-transparent bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] font-bold">&rarr;</span>
-              </div>
-            </a>
-
-            {/* Facebook */}
-            <a href="https://www.facebook.com/www.tdocvns.vom/" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center bg-background p-8 md:p-10 rounded-[2rem] border border-border/50 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-500/20 hover:-translate-y-1 transition-all duration-500">
-              <div className="w-16 h-16 rounded-full border border-border flex items-center justify-center text-text-muted group-hover:bg-blue-50 group-hover:text-[#1877F2] group-hover:border-[#1877F2]/30 transition-colors duration-300 mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              </div>
-              <h3 className="text-xl font-serif text-text mb-3">Facebook</h3>
-              <p className="text-sm text-text-muted font-light leading-relaxed text-center mb-6">
-                Connect with us and stay updated with Thukral Dental & Aesthetic Clinic.
-              </p>
-              <div className="mt-auto text-[#1877F2] opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 font-bold">
-                &rarr;
-              </div>
-            </a>
-
-            {/* Google Business Profile */}
-            <a href="https://share.google/DTUJBH7NBMFoJAsx" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center bg-background p-8 md:p-10 rounded-[2rem] border border-border/50 shadow-sm hover:shadow-xl hover:shadow-green-500/5 hover:border-green-500/20 hover:-translate-y-1 transition-all duration-500">
-              <div className="relative w-16 h-16 rounded-full border border-border flex items-center justify-center text-text-muted group-hover:border-green-500/30 transition-colors duration-300 mb-6 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#4285F4]/10 via-[#DB4437]/10 to-[#F4B400]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="relative z-10 group-hover:[stroke:url(#g-grad)] transition-all duration-300">
-                  <defs>
-                    <linearGradient id="g-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#4285F4" />
-                      <stop offset="33%" stopColor="#DB4437" />
-                      <stop offset="66%" stopColor="#F4B400" />
-                      <stop offset="100%" stopColor="#0F9D58" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-              </div>
-              <h3 className="text-xl font-serif text-text mb-3">Google</h3>
-              <p className="text-sm text-text-muted font-light leading-relaxed text-center mb-6">
-                Explore our clinic, reviews, location and patient experiences.
-              </p>
-              <div className="mt-auto opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#4285F4] via-[#F4B400] to-[#0F9D58] font-bold">&rarr;</span>
-              </div>
-            </a>
-
-          </div>
-        </div>
-      </section>
+       </section>
 
       {/* 2. “THE BEGINNING” */}
       <section className="py-24 lg:py-32 bg-background-secondary border-b border-border">
@@ -232,10 +142,13 @@ const About = () => {
             </div>
 
             <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <ImagePlaceholder 
-                label="[Academic / Early Journey Photograph]" 
-                className="aspect-[4/3] w-full shadow-xl" 
-              />
+              <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl border border-primary/10">
+                <img 
+                  src="https://res.cloudinary.com/hmjaaen2/image/upload/v1792573055/ff65b9b3-82ea-4e18-98fb-586ed72472b9.jpg" 
+                  alt="Academic journey of Dr. Anchit Thukral" 
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
             </div>
             
           </div>
@@ -309,55 +222,13 @@ const About = () => {
         </div>
       </section>
 
-      {/* 4. “CREDENTIALS & CERTIFICATIONS” */}
-      <section className="py-24 lg:py-32 bg-background-secondary border-b border-border overflow-hidden">
-        <div className="page-container">
-          <div className="max-w-3xl mx-auto text-center mb-16 md:mb-24 opacity-0 animate-fade-in-up">
-            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-text-muted mb-4 block">
-              CREDENTIALS & CERTIFICATIONS
-            </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text">
-              Built on Education. Strengthened by Experience.
-            </h2>
-          </div>
-
-          <div className="flex overflow-x-auto pb-8 -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:px-0 md:mx-0 snap-x snap-mandatory">
-            {[
-              { label: "[Certificate / Degree 01]" },
-              { label: "[Certificate / Degree 02]" },
-              { label: "[Certificate / Degree 03]" },
-              { label: "[Advanced Training Certificate]" },
-              { label: "[Clinical Certification]" },
-              { label: "[Professional Membership]" },
-            ].map((cert, idx) => (
-              <div 
-                key={idx} 
-                className="min-w-[85vw] md:min-w-0 snap-center shrink-0 group mr-4 md:mr-0 opacity-0 animate-fade-in-up bg-background p-6 rounded-2xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 cursor-default"
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                <ImagePlaceholder 
-                  label="[Certificate Image]" 
-                  className="aspect-[4/3] w-full mb-6 transform group-hover:scale-[1.02] transition-transform duration-500" 
-                />
-                <h4 className="text-lg font-medium text-text mb-2 group-hover:text-primary transition-colors">
-                  {cert.label}
-                </h4>
-                <p className="text-text-muted text-sm font-light">
-                  <span className="italic">[Issuing Institution]</span> &middot; [Year]
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. “THE STORY BEHIND THUKRAL” */}
+      {/* 4. “THE STORY BEHIND THUKRAL” */}
       <section className="py-24 lg:py-32 bg-background border-b border-border">
         <div className="page-container">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
             
             <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-up">
-              <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-text-muted mb-4 block">
+              <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4 block">
                 THE STORY BEHIND THUKRAL
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text mb-8">
@@ -377,10 +248,14 @@ const About = () => {
             </div>
 
             <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <ImagePlaceholder 
-                label="[Clinic / Doctor With Patient Image]" 
-                className="aspect-[4/3] w-full shadow-xl" 
-              />
+              <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl border border-border/80 bg-background-secondary">
+                <img
+                  src="https://res.cloudinary.com/hmjaaen2/image/upload/v1792664622/02.webp"
+                  alt="Thukral Dental & Aesthetic Clinic - Thoughtful patient care"
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
             </div>
             
           </div>
@@ -436,10 +311,14 @@ const About = () => {
             </div>
 
             <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <ImagePlaceholder 
-                label="[Modern Clinic Interior / Treatment Room]" 
-                className="aspect-[4/3] w-full shadow-xl" 
-              />
+              <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl border border-border/80 bg-background-secondary">
+                <img
+                  src="https://res.cloudinary.com/hmjaaen2/image/upload/v1792664990/492004405_2644301385919152_3283715891965521739_n.jpg"
+                  alt="Thukral Dental & Aesthetic Clinic - Modern clinic interior, treatment operatory and dental setup"
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
             </div>
             
           </div>
@@ -466,10 +345,14 @@ const About = () => {
             </div>
 
             <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <ImagePlaceholder 
-                label="[Dr. Anchit Thukral Personal / Candid Image]" 
-                className="aspect-[4/3] w-full shadow-xl" 
-              />
+              <div className="aspect-square w-full max-w-xl mx-auto rounded-2xl overflow-hidden shadow-xl border border-border/80 bg-background-secondary">
+                <img
+                  src="https://res.cloudinary.com/hmjaaen2/image/upload/v1792669910/89cc7992-ed11-4020-82a5-99709a02d0d7.png"
+                  alt="Dr. Anchit Thukral - Beyond the White Coat"
+                  className="w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
             </div>
             
           </div>
@@ -480,8 +363,13 @@ const About = () => {
       <section className="py-32 lg:py-48 bg-text text-background relative overflow-hidden text-center">
         {/* Subtle background abstract graphic / gradient */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute top-0 w-full h-full opacity-10 pointer-events-none flex justify-center items-center">
-            <svg width="600" height="600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2C7 2 4.5 5 4.5 9c0 4 3 6 3 9 0 1.5 2 2 4.5 2s4.5-.5 4.5-2c0-3 3-5 3-9 0-4-2.5-7-7.5-7z"></path></svg>
+        <div className="absolute inset-0 pointer-events-none flex justify-center items-center overflow-hidden">
+          <img
+            src="https://res.cloudinary.com/hmjaaen2/image/upload/v1792669371/logo.png"
+            alt="Thukral Dental Clinic Logo"
+            className="w-[420px] sm:w-[540px] md:w-[640px] max-w-[85vw] h-auto object-contain opacity-15 brightness-0 invert select-none pointer-events-none"
+            loading="lazy"
+          />
         </div>
 
         <div className="page-container relative z-10 opacity-0 animate-fade-in-up">
@@ -521,6 +409,99 @@ const About = () => {
           <span className="text-sm font-semibold tracking-widest uppercase text-text-muted block">
             Thukral Dental & Aesthetic Clinic &middot; Varanasi
           </span>
+        </div>
+      </section>
+
+      {/* CONNECT WITH THUKRAL - SOCIAL PRESENCE */}
+      <section className="py-28 lg:py-36 bg-[#28221F] text-[#F5F0E8] border-t border-[#50443B]/60 relative overflow-hidden">
+        {/* Subtle warm ambient glow to enrich the espresso depth */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#4A3B32]/30 rounded-full blur-[140px] pointer-events-none" />
+
+        <div className="page-container relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24 opacity-0 animate-fade-in-up">
+            <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-[#D4C3B3] mb-6 block">
+              FIND US HERE
+            </span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#F5F0E8] mb-6 tracking-tight">
+              Connect With Thukral
+            </h2>
+            <p className="text-base md:text-lg text-[#BDB1A5] leading-relaxed font-light">
+              Stay connected with Thukral Dental &amp; Aesthetic Clinic, explore our latest updates, patient experiences and clinic information across our social platforms.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            
+            {/* Instagram Card */}
+            <a 
+              href="https://www.instagram.com/thukraldentalclinic/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex flex-col items-center bg-[#342C27] hover:bg-[#3D342E] p-8 md:p-10 rounded-[2rem] border border-[#50443B] hover:border-[#8C7A6B]/80 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer text-center"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#28221F] border border-[#50443B] flex items-center justify-center text-[#F5F0E8] group-hover:border-[#D4C3B3]/60 group-hover:scale-105 transition-all duration-300 mb-6 shadow-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#F5F0E8] group-hover:text-[#F5F0E8] transition-colors duration-300">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-serif text-[#F5F0E8] mb-3 group-hover:text-[#FFFFFF] transition-colors">Instagram</h3>
+              <p className="text-sm text-[#BDB1A5] font-light leading-relaxed mb-6">
+                Follow our latest updates, smiles and clinic moments.
+              </p>
+              <div className="mt-auto text-[#D4C3B3] font-medium text-sm flex items-center gap-1.5 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+                <span>View Profile</span>
+                <span className="font-bold">&rarr;</span>
+              </div>
+            </a>
+
+            {/* Facebook Card */}
+            <a 
+              href="https://www.facebook.com/www.tdocvns.vom/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex flex-col items-center bg-[#342C27] hover:bg-[#3D342E] p-8 md:p-10 rounded-[2rem] border border-[#50443B] hover:border-[#8C7A6B]/80 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer text-center"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#28221F] border border-[#50443B] flex items-center justify-center text-[#F5F0E8] group-hover:border-[#D4C3B3]/60 group-hover:scale-105 transition-all duration-300 mb-6 shadow-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#F5F0E8] group-hover:text-[#F5F0E8] transition-colors duration-300">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-serif text-[#F5F0E8] mb-3 group-hover:text-[#FFFFFF] transition-colors">Facebook</h3>
+              <p className="text-sm text-[#BDB1A5] font-light leading-relaxed mb-6">
+                Connect with us and stay updated with Thukral Dental &amp; Aesthetic Clinic.
+              </p>
+              <div className="mt-auto text-[#D4C3B3] font-medium text-sm flex items-center gap-1.5 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+                <span>Connect With Us</span>
+                <span className="font-bold">&rarr;</span>
+              </div>
+            </a>
+
+            {/* Google Business Profile Card */}
+            <a 
+              href="https://share.google/DTUJBH7NBMFoJAsx" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex flex-col items-center bg-[#342C27] hover:bg-[#3D342E] p-8 md:p-10 rounded-[2rem] border border-[#50443B] hover:border-[#8C7A6B]/80 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer text-center"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#28221F] border border-[#50443B] flex items-center justify-center text-[#E8B98A] group-hover:border-[#E8B98A]/60 group-hover:scale-105 transition-all duration-300 mb-6 shadow-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#E8B98A] transition-colors duration-300">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-serif text-[#F5F0E8] mb-3 group-hover:text-[#FFFFFF] transition-colors">Google</h3>
+              <p className="text-sm text-[#BDB1A5] font-light leading-relaxed mb-6">
+                Explore our clinic, reviews, location and patient experiences.
+              </p>
+              <div className="mt-auto text-[#D4C3B3] font-medium text-sm flex items-center gap-1.5 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
+                <span>Find On Google</span>
+                <span className="font-bold">&rarr;</span>
+              </div>
+            </a>
+
+          </div>
         </div>
       </section>
       

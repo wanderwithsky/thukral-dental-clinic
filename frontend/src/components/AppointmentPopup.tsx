@@ -1,20 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { X } from 'lucide-react';
+import { useAppointmentModal } from '../context/AppointmentModalContext';
 
 const AppointmentPopup = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  const { isModalOpen, closeModal } = useAppointmentModal();
 
   // Prevent background scrolling when open
   useEffect(() => {
-    if (isOpen) {
+    if (isModalOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -22,22 +15,22 @@ const AppointmentPopup = () => {
     return () => {
       document.body.style.overflow = '';
     };
-  }, [isOpen]);
+  }, [isModalOpen]);
 
-  if (!isOpen) return null;
+  if (!isModalOpen) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-background/80 backdrop-blur-sm animate-fade-in"
-        onClick={() => setIsOpen(false)}
+        onClick={closeModal}
       ></div>
 
       {/* Modal */}
       <div className="relative bg-background w-full max-w-lg rounded-2xl shadow-2xl border border-border p-6 md:p-8 animate-fade-in-up z-10 max-h-[90vh] overflow-y-auto">
         <button 
-          onClick={() => setIsOpen(false)}
+          onClick={closeModal}
           className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted hover:text-primary transition-colors"
           aria-label="Close"
         >
@@ -46,7 +39,7 @@ const AppointmentPopup = () => {
 
         <h3 className="text-2xl md:text-3xl font-serif text-text mb-8 pr-8">Book Your Appointment</h3>
         
-        <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setIsOpen(false); }}>
+        <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); closeModal(); }}>
           <div>
             <label htmlFor="popup-name" className="block text-xs font-semibold uppercase tracking-wider text-text-muted mb-1">Full Name</label>
             <input type="text" id="popup-name" className="w-full bg-transparent border-b border-border/60 py-2 text-text focus:outline-none focus:border-primary transition-colors" required />
@@ -89,4 +82,4 @@ const AppointmentPopup = () => {
   );
 };
 
-export default AppointmentPopup;
+export default AppointmentPopup;3
