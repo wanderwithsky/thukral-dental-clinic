@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Sparkles, Award, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Sparkles, X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 
 // Centralized verified original clinic & clinical case images
 export const TREATMENT_ASSETS = {
@@ -21,6 +21,14 @@ export const TREATMENT_ASSETS = {
   restorativeCrownAnteriorRepair: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653344/2358833f-8984-4e1d-9686-cc4b1a0242c9.jpg', // Image 12 (1206x1063)
   aestheticFacialHarmonyTransformation: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653350/e2aa2a30-57c7-4bcb-a104-1d589f397e64.jpg', // Image 13 (1206x1197)
   fullSmileTransformationClinical: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653325/306e470f-b028-4831-9afe-199b6e41b123.jpg', // Image 14 (1206x1206)
+
+  // Additional Verified Gallery Transformation Assets (Images 04 to 09)
+  transformationArchAlignment04: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653379/5ceede13-2854-444c-b08a-b9bc33ddf138.jpg',
+  transformationBiteHarmony05: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653355/03b5b580-3557-4dd0-b0fa-2526700d7cdc.jpg',
+  transformationOcclusalGuidance06: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653416/a59f8a14-403c-4879-af0e-afeb8753f218.jpg',
+  transformationOrthodonticAlignment07: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653419/7acc836f-8c51-4d99-9093-551eff85029a.jpg',
+  transformationRehabilitation08: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653325/306e470f-b028-4831-9afe-199b6e41b123.jpg',
+  transformationRestorativeCrown09: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653344/2358833f-8984-4e1d-9686-cc4b1a0242c9.jpg',
 };
 
 // Full collection of 14 gallery items with rich captions for modal view
@@ -160,6 +168,60 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
     description: 'Harmonization of smile arc, tooth shade, and lip line symmetry delivering a revitalized, natural appearance.',
     alt: 'Clinical smile makeover documentation before and after',
   },
+  // 14: Real Results - Case 04 (Image 04)
+  {
+    id: 'item-case-04',
+    image: TREATMENT_ASSETS.transformationArchAlignment04,
+    title: 'Case 04: Maxillary Arch Alignment & Symmetry',
+    category: 'Orthodontic Guidance',
+    description: 'Targeted arch expansion and anterior alignment resolving crowding to establish harmonious occlusal relationships.',
+    alt: 'Clinical before and after records of maxillary arch alignment and smile symmetry',
+  },
+  // 15: Real Results - Case 05 (Image 05)
+  {
+    id: 'item-case-05',
+    image: TREATMENT_ASSETS.transformationBiteHarmony05,
+    title: 'Case 05: Anterior Bite Harmony & Alignment',
+    category: 'Orthodontic Correction',
+    description: 'Systematic bite adjustment and anterior leveling delivering structural stability and enhanced smile aesthetics.',
+    alt: 'Clinical before and after documentation of anterior bite harmony and tooth leveling',
+  },
+  // 16: Real Results - Case 06 (Image 06)
+  {
+    id: 'item-case-06',
+    image: TREATMENT_ASSETS.transformationOcclusalGuidance06,
+    title: 'Case 06: Occlusal Guidance & Crossbite Correction',
+    category: 'Orthodontic Alignment',
+    description: 'Conservative correction of transverse occlusal discrepancies, restoring balanced canine guidance and smile aesthetics.',
+    alt: 'Photographic clinical records of crossbite correction and functional occlusal guidance',
+  },
+  // 17: Real Results - Case 07 (Image 07)
+  {
+    id: 'item-case-07',
+    image: TREATMENT_ASSETS.transformationOrthodonticAlignment07,
+    title: 'Case 07: Orthodontic Alignment & Smile Design',
+    category: 'Orthodontic Alignment',
+    description: 'Targeted correction of crowded anterior teeth and arch coordination, creating balanced facial aesthetics and oral health.',
+    alt: 'Intraoral and facial photographic alignment records showing orthodontic correction',
+  },
+  // 18: Real Results - Case 08 (Image 08)
+  {
+    id: 'item-case-08',
+    image: TREATMENT_ASSETS.transformationRehabilitation08,
+    title: 'Case 08: Full Smile Rehabilitation & Proportions',
+    category: 'Aesthetic Dentistry',
+    description: 'Comprehensive restorative and aesthetic smile design re-establishing proportional tooth height, shade, and natural luster.',
+    alt: 'Full aesthetic smile makeover and rehabilitation before and after documentation',
+  },
+  // 19: Real Results - Case 09 (Image 09)
+  {
+    id: 'item-case-09',
+    image: TREATMENT_ASSETS.transformationRestorativeCrown09,
+    title: 'Case 09: Restorative Crown & Enamel Restoration',
+    category: 'Restorative Care',
+    description: 'Biomimetic restorative craftsmanship repairing fractured anterior enamel with shade-matched clinical restorations.',
+    alt: 'Anterior ceramic crown and enamel restoration before and after clinical photography',
+  },
 ];
 
 // Clinical Case Card with full composite preservation
@@ -247,7 +309,7 @@ const ClinicalCaseCard = ({
   );
 };
 
-// Treatment Service Card (Editorial Category Card)
+// Treatment Service Card (Clean photographic showcase with crisp title and light, visible image)
 const TreatmentCard = ({
   item,
   size = 'small',
@@ -261,49 +323,92 @@ const TreatmentCard = ({
 }) => (
   <div
     onClick={onOpenFullscreen}
-    className={`group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-700 cursor-pointer border border-border bg-[#0D0D0D] ${
+    className={`group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 cursor-pointer border border-border/80 bg-background-secondary ${
       size === 'large'
         ? 'md:col-span-2 aspect-[4/3] md:aspect-[21/9]'
         : 'aspect-[4/3] md:aspect-[4/5]'
     }`}
   >
+    {/* Clean, 100% bright, fully visible photograph */}
     <div className="absolute inset-0 w-full h-full">
       <img
         src={item.image}
         alt={item.title}
-        className={`w-full h-full object-cover ${objectPosition} transform transition-transform duration-[1.5s] group-hover:scale-105 opacity-90`}
+        className={`w-full h-full object-cover ${objectPosition} transform transition-transform duration-[1.2s] group-hover:scale-105 opacity-100`}
         loading="lazy"
       />
     </div>
-    {/* Refined gradient overlay for text legibility */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/10 opacity-85 group-hover:opacity-95 transition-opacity duration-500" />
+    
+    {/* Subtle gradient at bottom solely to ensure the title is crisp and readable */}
+    <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none" />
 
-    {/* Subtle Fullscreen Icon Indicator at Top Right */}
-    <div className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white flex items-center justify-center opacity-85 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 group-hover:scale-110">
-      <Maximize2 size={14} />
+    {/* Fullscreen Icon Indicator at Top Right */}
+    <div className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-black/50 backdrop-blur-md border border-white/30 text-white flex items-center justify-center opacity-85 sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-300 group-hover:scale-110 shadow-md">
+      <Maximize2 size={14} className="text-white" />
     </div>
 
-    <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 flex flex-col justify-end z-10">
-      <div className="flex items-end justify-between gap-4">
-        <div className="max-w-[85%] transform transition-transform duration-700 group-hover:-translate-y-2">
-          <div className="inline-block text-[11px] uppercase tracking-wider text-primary font-semibold mb-1">
-            {item.category}
-          </div>
-          <h3 className="text-2xl md:text-3xl font-serif text-white mb-2">{item.title}</h3>
-          <p className="text-sm md:text-base text-white/90 font-light leading-relaxed transform transition-all duration-700 opacity-85 group-hover:opacity-100">
-            {item.description}
-          </p>
-        </div>
-        <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 rounded-full border border-white/40 flex items-center justify-center text-white backdrop-blur-sm group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-500 shadow-lg">
-          <ArrowRight size={18} className="transform group-hover:translate-x-0.5 transition-transform duration-300" />
-        </div>
+    {/* Bottom Footer: The Title (prominently displayed) and Action Button */}
+    <div className="absolute bottom-0 left-0 w-full p-5 sm:p-6 md:p-8 flex items-end justify-between gap-4 z-10">
+      <div className="max-w-[85%] transform transition-transform duration-500 group-hover:-translate-y-1">
+        <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white drop-shadow-md tracking-tight leading-snug">
+          {item.title}
+        </h3>
+      </div>
+      
+      {/* Action Button */}
+      <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 rounded-full border border-white/50 bg-black/50 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-300 shadow-lg">
+        <ArrowRight size={18} className="transform group-hover:translate-x-0.5 transition-transform duration-300 text-white" />
       </div>
     </div>
   </div>
 );
 
+// Transformation cases slice for the carousel (Cases 01 to 09, indices 11 to 19 in ALL_TREATMENT_ITEMS)
+const TRANSFORMATION_CASES = ALL_TREATMENT_ITEMS.slice(11, 20);
+
 const Treatments = () => {
   const location = useLocation();
+
+  // Carousel state for Verified Patient Transformations
+  const [carouselPage, setCarouselPage] = useState<number>(0);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const totalPages = Math.ceil(TRANSFORMATION_CASES.length / 3); // 3 pages (3 cases each)
+
+  const handlePrevPage = useCallback(() => {
+    if (isAnimating || carouselPage <= 0) return;
+    setIsAnimating(true);
+    setCarouselPage((prev) => prev - 1);
+    setTimeout(() => setIsAnimating(false), 450);
+  }, [isAnimating, carouselPage]);
+
+  const handleNextPage = useCallback(() => {
+    if (isAnimating || carouselPage >= totalPages - 1) return;
+    setIsAnimating(true);
+    setCarouselPage((prev) => prev + 1);
+    setTimeout(() => setIsAnimating(false), 450);
+  }, [isAnimating, carouselPage, totalPages]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+    if (distance > minSwipeDistance) {
+      handleNextPage();
+    } else if (distance < -minSwipeDistance) {
+      handlePrevPage();
+    }
+  };
 
   // Fullscreen Lightbox state
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
@@ -586,10 +691,10 @@ const Treatments = () => {
         </div>
       </section>
 
-      {/* 3. CLINICAL CASE TRANSFORMATIONS GALLERY (Items 11, 12, 13) */}
+      {/* 3. CLINICAL CASE TRANSFORMATIONS GALLERY (3-Item Carousel with Cases 01 to 09) */}
       <section id="transformations" className="py-24 lg:py-32 bg-background border-b border-border">
         <div className="page-container">
-          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24 opacity-0 animate-fade-in-up">
+          <div className="text-center max-w-3xl mx-auto mb-14 md:mb-20 opacity-0 animate-fade-in-up">
             <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4 block">
               CLINICAL EVIDENCE
             </span>
@@ -597,28 +702,151 @@ const Treatments = () => {
               Verified Patient Transformations
             </h2>
             <p className="text-base md:text-lg text-text-muted leading-relaxed font-light">
-              Real clinical documentation displaying pre- and post-treatment photographic records. Tap any case to view full-resolution clinical records.
+              Real clinical documentation displaying pre- and post-treatment photographic records. Tap any case to inspect full-resolution clinical records.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-            {/* Case 01: Orthodontic Profile & Bite Alignment (Item 11) */}
-            <ClinicalCaseCard 
-              item={ALL_TREATMENT_ITEMS[11]}
-              onOpenFullscreen={() => openLightbox(11)}
-            />
+          {/* Carousel Wrapper with outer side navigation arrows */}
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-14 md:px-16 lg:px-20">
+            
+            {/* Desktop / Tablet Left Navigation Arrow */}
+            <button
+              type="button"
+              onClick={handlePrevPage}
+              disabled={carouselPage === 0 || isAnimating}
+              aria-label="Previous transformation cases"
+              className={`absolute left-0 sm:left-1 md:left-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+                carouselPage === 0
+                  ? 'bg-background-secondary border-border/40 text-text-muted/30 cursor-not-allowed opacity-30 shadow-none'
+                  : 'bg-background border-border text-text hover:border-primary hover:bg-primary hover:text-white cursor-pointer hover:shadow-2xl hover:scale-105 active:scale-95'
+              }`}
+            >
+              <ChevronLeft size={24} className="stroke-[2.5]" />
+            </button>
 
-            {/* Case 02: Smile & Aesthetic Arch Harmony (Item 12) */}
-            <ClinicalCaseCard 
-              item={ALL_TREATMENT_ITEMS[12]}
-              onOpenFullscreen={() => openLightbox(12)}
-            />
+            {/* Desktop / Tablet Right Navigation Arrow */}
+            <button
+              type="button"
+              onClick={handleNextPage}
+              disabled={carouselPage >= totalPages - 1 || isAnimating}
+              aria-label="Next transformation cases"
+              className={`absolute right-0 sm:right-1 md:right-2 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full border flex items-center justify-center transition-all duration-300 shadow-lg focus:outline-none focus:ring-2 focus:ring-primary ${
+                carouselPage >= totalPages - 1
+                  ? 'bg-background-secondary border-border/40 text-text-muted/30 cursor-not-allowed opacity-30 shadow-none'
+                  : 'bg-background border-border text-text hover:border-primary hover:bg-primary hover:text-white cursor-pointer hover:shadow-2xl hover:scale-105 active:scale-95'
+              }`}
+            >
+              <ChevronRight size={24} className="stroke-[2.5]" />
+            </button>
 
-            {/* Case 03: Facial Aesthetics & Smile Balance (Item 13) */}
-            <ClinicalCaseCard 
-              item={ALL_TREATMENT_ITEMS[13]}
-              onOpenFullscreen={() => openLightbox(13)}
-            />
+            {/* Carousel Viewport Container (Overflow Hidden) */}
+            <div 
+              className="overflow-hidden rounded-2xl md:rounded-3xl p-1"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div
+                className="flex transition-transform duration-[400ms] ease-out will-change-transform"
+                style={{
+                  transform: `translateX(-${carouselPage * 100}%)`,
+                }}
+              >
+                {/* 3 Pages (0, 1, 2) each containing 3 complete cards side-by-side */}
+                {Array.from({ length: totalPages }).map((_, pageIdx) => {
+                  const pageCases = TRANSFORMATION_CASES.slice(pageIdx * 3, pageIdx * 3 + 3);
+                  return (
+                    <div
+                      key={`page-${pageIdx}`}
+                      className="w-full shrink-0 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 px-1 py-2"
+                    >
+                      {pageCases.map((caseItem, idxOnPage) => {
+                        const globalLightboxIndex = 11 + pageIdx * 3 + idxOnPage;
+                        return (
+                          <div key={caseItem.id} className="h-full">
+                            <ClinicalCaseCard
+                              item={caseItem}
+                              badge={`Case 0${pageIdx * 3 + idxOnPage + 1}`}
+                              onOpenFullscreen={() => openLightbox(globalLightboxIndex)}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Navigation Indicators & Range Counter */}
+            <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-border/60 pt-6">
+              
+              {/* Range Counter (e.g. 01–03 / 09) */}
+              <div className="flex items-center gap-2 text-xs md:text-sm font-medium tracking-wider text-text-muted">
+                <span className="font-serif text-base md:text-lg text-primary font-semibold">
+                  {`0${carouselPage * 3 + 1}–0${Math.min((carouselPage + 1) * 3, TRANSFORMATION_CASES.length)}`}
+                </span>
+                <span className="text-border">/</span>
+                <span>{`0${TRANSFORMATION_CASES.length} Cases Documented`}</span>
+              </div>
+
+              {/* Pagination Dots */}
+              <div className="flex items-center gap-2.5" role="tablist" aria-label="Carousel pagination">
+                {Array.from({ length: totalPages }).map((_, dotIdx) => (
+                  <button
+                    key={`dot-${dotIdx}`}
+                    type="button"
+                    role="tab"
+                    aria-selected={carouselPage === dotIdx}
+                    aria-label={`Go to page ${dotIdx + 1}: Cases 0${dotIdx * 3 + 1} to 0${Math.min((dotIdx + 1) * 3, TRANSFORMATION_CASES.length)}`}
+                    onClick={() => {
+                      if (!isAnimating) {
+                        setIsAnimating(true);
+                        setCarouselPage(dotIdx);
+                        setTimeout(() => setIsAnimating(false), 450);
+                      }
+                    }}
+                    className={`transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-primary ${
+                      carouselPage === dotIdx
+                        ? 'w-8 h-2.5 bg-primary rounded-full'
+                        : 'w-2.5 h-2.5 bg-border hover:bg-text-muted/40 rounded-full'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Mobile Previous / Next Touch Buttons */}
+              <div className="flex items-center gap-2 sm:hidden">
+                <button
+                  type="button"
+                  onClick={handlePrevPage}
+                  disabled={carouselPage === 0 || isAnimating}
+                  aria-label="Previous cases"
+                  className={`px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1 ${
+                    carouselPage === 0
+                      ? 'border-border/40 text-text-muted/30 cursor-not-allowed'
+                      : 'border-border bg-background-secondary text-text'
+                  }`}
+                >
+                  <ChevronLeft size={14} /> Prev
+                </button>
+                <button
+                  type="button"
+                  onClick={handleNextPage}
+                  disabled={carouselPage >= totalPages - 1 || isAnimating}
+                  aria-label="Next cases"
+                  className={`px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1 ${
+                    carouselPage >= totalPages - 1
+                      ? 'border-border/40 text-text-muted/30 cursor-not-allowed'
+                      : 'border-border bg-background-secondary text-text'
+                  }`}
+                >
+                  Next <ChevronRight size={14} />
+                </button>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </section>
@@ -629,10 +857,6 @@ const Treatments = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] opacity-30 pointer-events-none" />
         
         <div className="page-container relative z-10 text-center flex flex-col items-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-primary text-xs font-semibold tracking-wider uppercase mb-6">
-            <Award size={13} className="text-primary" />
-            <span>START YOUR SMILE JOURNEY</span>
-          </div>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8 max-w-3xl">
             Let&apos;s create a healthier, <br className="hidden md:block" />
             <span className="italic text-background/80">more confident smile.</span>

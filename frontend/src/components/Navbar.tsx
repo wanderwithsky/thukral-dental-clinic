@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { useAppointmentModal } from '../context/AppointmentModalContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { openModal } = useAppointmentModal();
 
   const handleDropdownItemClick = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
@@ -50,7 +48,6 @@ const Navbar = () => {
     { name: 'Why Thukral', path: '/why-thukral' },
     { name: 'Treatments', path: '/treatments', hasDropdown: true },
     { name: 'Testimonials', path: '/testimonials' },
-    { name: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -138,13 +135,12 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
-          <button 
-            type="button" 
-            onClick={openModal} 
-            className="btn-primary cursor-pointer"
+          <Link 
+            to="/appointment" 
+            className="btn-primary inline-block text-center cursor-pointer"
           >
             Book Appointment
-          </button>
+          </Link>
         </nav>
 
         {/* Mobile Menu Toggle (Header visible when menu closed) */}
@@ -279,18 +275,17 @@ const Navbar = () => {
 
         {/* Menu Footer CTA */}
         <div className="p-6 pb-8 bg-background relative z-10 border-t border-border/10 shrink-0">
-          <button 
-            type="button"
+          <Link 
+            to="/appointment"
             className={`btn-primary w-full flex items-center justify-between text-base py-4 px-6 group transform transition-all duration-700 ease-out cursor-pointer ${isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
             style={{ transitionDelay: `${navLinks.length * 60 + 150}ms` }}
             onClick={() => {
               setIsMobileMenuOpen(false);
-              openModal();
             }}
           >
             <span className="font-medium tracking-widest">BOOK AN APPOINTMENT</span>
             <span className="text-xl font-serif transform transition-transform duration-500 group-hover:translate-x-2">&rarr;</span>
-          </button>
+          </Link>
         </div>
       </div>
     </>
