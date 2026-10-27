@@ -8,12 +8,20 @@
     box-sizing: border-box;
   }
   
-  html, body, #root {
+  html, body {
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: clip;
   }
   
   body {
@@ -54,4 +62,21 @@
   .animate-marquee:hover {
     animation-play-state: paused;
   }
+}
+
+/* Section-Bound Sticky Orbit Wrapper for Central Appointment Circle */
+.appointment-sticky-wrapper {
+  position: sticky;
+  top: 50vh;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  pointer-events: none;
+  width: max-content;
+  height: fit-content;
+}
+
+.appointment-sticky-wrapper a,
+.appointment-sticky-wrapper button {
+  pointer-events: auto;
 }

@@ -47,6 +47,7 @@ const Navbar = () => {
     { name: 'About', path: '/about' },
     { name: 'Why Thukral', path: '/why-thukral' },
     { name: 'Treatments', path: '/treatments', hasDropdown: true },
+    { name: 'Smile School', path: '/learn' },
     { name: 'Testimonials', path: '/testimonials' },
   ];
 
@@ -99,16 +100,29 @@ const Navbar = () => {
                       <div className="bg-background border border-border rounded-xl shadow-xl overflow-hidden min-w-[200px] p-2 flex flex-col">
                         <button 
                           onClick={(e) => handleDropdownItemClick(e, 'services')}
-                          className="text-left px-4 py-3 text-sm font-medium text-text hover:text-primary hover:bg-background-secondary rounded-lg transition-colors w-full"
+                          className="text-left px-4 py-3 text-sm font-medium text-text hover:text-primary hover:bg-background-secondary rounded-lg transition-colors w-full cursor-pointer"
                         >
                           Services
                         </button>
                         <button 
                           onClick={(e) => handleDropdownItemClick(e, 'transformations')}
-                          className="text-left px-4 py-3 text-sm font-medium text-text hover:text-primary hover:bg-background-secondary rounded-lg transition-colors w-full"
+                          className="text-left px-4 py-3 text-sm font-medium text-text hover:text-primary hover:bg-background-secondary rounded-lg transition-colors w-full cursor-pointer"
                         >
                           Transformations
                         </button>
+                        <NavLink
+                          to="/treatments/cbct"
+                          className={({ isActive }) =>
+                            `text-left px-4 py-3 text-sm font-medium rounded-lg transition-colors w-full flex items-center justify-between ${
+                              isActive
+                                ? 'text-primary bg-background-secondary font-semibold'
+                                : 'text-text hover:text-primary hover:bg-background-secondary'
+                            }`
+                          }
+                        >
+                          <span>CBCT Imaging</span>
+                          <span className="text-[10px] uppercase font-mono tracking-widest text-primary/80 bg-primary/10 px-2 py-0.5 rounded">3D</span>
+                        </NavLink>
                       </div>
                     </div>
                   </div>
@@ -228,6 +242,23 @@ const Navbar = () => {
                         <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-primary transition-all duration-500 group-hover:w-full ease-out"></span>
                       </span>
                     </button>
+                    <NavLink
+                      to="/treatments/cbct"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={({ isActive }) =>
+                        `group flex items-baseline font-serif text-[24px] sm:text-3xl transition-all duration-500 transform pl-12 text-left ${
+                          isMobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+                        } ${isActive ? 'text-primary' : 'text-text hover:text-primary'}`
+                      }
+                      style={{ transitionDelay: `${index * 60 + 190}ms` }}
+                    >
+                      {({ isActive }) => (
+                        <span className="relative">
+                          CBCT Imaging
+                          <span className={`absolute left-0 -bottom-1 h-[1px] bg-primary transition-all duration-500 ease-out ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+                        </span>
+                      )}
+                    </NavLink>
                   </div>
                 ) : link.path.startsWith('/#') ? (
                   <a 

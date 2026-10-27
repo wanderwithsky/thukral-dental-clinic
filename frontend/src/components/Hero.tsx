@@ -3,13 +3,43 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-auto lg:h-screen bg-background pt-[100px] lg:pt-24 block lg:flex lg:items-end overflow-hidden border-b-0">
+    <section className="relative w-full h-auto lg:h-screen bg-background pt-[100px] lg:pt-24 block lg:flex lg:items-end border-b-0">
       
+      {/* Sticky Appointment Orbit Wrapper - Constrained to Hero Section */}
+      <div className="pointer-events-none absolute inset-0 z-40 flex justify-center">
+        <div 
+          className="appointment-sticky-wrapper pointer-events-none sticky top-1/2 -translate-y-1/2 flex items-center justify-center self-start"
+          style={{
+            position: 'sticky',
+            top: '50vh',
+            transform: 'translateY(-50%)',
+          }}
+        >
+          <Link 
+            to="/appointment" 
+            aria-label="Book an Appointment" 
+            className="pointer-events-auto relative block w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full flex items-center justify-center group/circle transition-transform duration-500 cursor-pointer text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:scale-105"
+          >
+            <svg className="absolute inset-0 w-full h-full animate-[spin_12s_linear_infinite] group-hover/circle:animate-[spin_8s_linear_infinite]" viewBox="0 0 200 200">
+              <path id="textPath" d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0" fill="none" />
+              <text className="text-[13px] uppercase font-bold tracking-[0.25em] fill-current" textLength="430">
+                <textPath href="#textPath" startOffset="0%">
+                  BOOK AN APPOINTMENT &bull; BOOK AN APPOINTMENT &bull; 
+                </textPath>
+              </text>
+            </svg>
+            <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-10 lg:h-10 bg-primary text-background rounded-full flex items-center justify-center z-10 shadow-lg transform transition-transform duration-500 group-hover/circle:scale-110 group-hover/circle:-rotate-12">
+              <span className="text-base sm:text-lg lg:text-xl font-serif leading-none">&rarr;</span>
+            </div>
+          </Link>
+        </div>
+      </div>
+
       {/* Container aligned to vertical center for text, bottom for image on desktop. Stacked on mobile. */}
       <div className="page-container h-full w-full flex flex-col lg:flex-row relative pb-10 lg:pb-0 px-5 lg:px-8">
         
-        {/* Left Content (45-50%) - Order 2 on mobile, 1 on desktop */}
-        <div className="w-full lg:w-[48%] h-auto lg:h-full flex flex-col justify-center lg:pb-24 opacity-0 animate-fade-in-up order-2 lg:order-1 mt-6 lg:mt-0" style={{ animationDelay: '0.1s' }}>
+        {/* Left Content (46-48%) - Order 2 on mobile, 1 on desktop */}
+        <div className="w-full lg:w-[48%] xl:w-[46%] h-auto lg:h-full flex flex-col justify-center lg:pb-24 opacity-0 animate-fade-in-up order-2 lg:order-1 mt-6 lg:mt-0" style={{ animationDelay: '0.1s' }}>
           
           {/* Trust Indicator */}
           <div className="flex items-center space-x-2 mb-4 lg:mb-6">
@@ -48,39 +78,28 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Visual Composition (50-55%) - Order 1 on mobile, 2 on desktop */}
-        <div className="w-full lg:w-[52%] h-auto lg:h-full flex justify-center lg:justify-end items-end relative opacity-0 animate-fade-in-up order-1 lg:order-2 pt-2 lg:pt-0 mb-6 lg:mb-0" style={{ animationDelay: '0.3s' }}>
+        {/* Right Visual Composition (52-54%) - Order 1 on mobile, 2 on desktop */}
+        <div className="w-full lg:w-[52%] xl:w-[54%] h-auto lg:h-full flex justify-center lg:justify-end items-end relative opacity-0 animate-fade-in-up order-1 lg:order-2 pt-2 lg:pt-0 mb-6 lg:mb-0" style={{ animationDelay: '0.3s' }}>
           
-          {/* Doctor Portrait (Primary) - Stretching to bottom */}
-          <div className="relative w-[90vw] sm:w-[80vw] left-1/2 -translate-x-1/2 lg:w-auto lg:left-auto lg:translate-x-0 h-auto lg:h-[82vh] xl:h-[85vh] flex items-end justify-center lg:justify-end group cursor-default z-10">
+          {/* Doctor Portrait (Primary) - Scaled proportionally by ~32-35% with natural right positioning */}
+          <div className="relative w-auto max-w-[92vw] sm:max-w-[85vw] lg:max-w-none h-[56vh] sm:h-[64vh] lg:h-[90vh] xl:h-[93vh] max-h-[calc(100vh-5.5rem)] flex items-end justify-center lg:justify-end group cursor-default z-10">
             
             {/* The Real Doctor Image (Transparent Cutout) */}
-            <picture className="relative z-10 w-full lg:w-auto h-auto lg:h-full max-w-none flex justify-center items-end transform transition-all duration-700 lg:group-hover:scale-[1.01] lg:group-hover:-translate-y-1 origin-bottom" style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}>
-              <source media="(min-width: 1024px)" srcSet="/hero-img.png" />
+            <picture className="relative z-10 w-auto h-full max-w-none flex justify-center items-end transform transition-all duration-700 lg:group-hover:scale-[1.01] lg:group-hover:-translate-y-1 origin-bottom" style={{ filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.15))' }}>
+              <source type="image/webp" srcSet="/hero-dr-anchit.webp" />
               <img 
-                src="/hero-img-mobile.png" 
+                src="/hero-dr-anchit.png" 
                 alt="Dr. Anchit Thukral" 
-                className="w-full lg:w-auto h-auto lg:h-full object-contain object-bottom"
+                className="w-auto h-full max-h-full object-contain object-bottom"
+                width={739}
+                height={1198}
+                fetchPriority="high"
+                loading="eager"
               />
             </picture>
             
-            {/* Rotating Appointment Circle */}
-            <Link to="/appointment" aria-label="Book an Appointment" className="absolute left-[-15vw] sm:-left-8 lg:-left-12 top-[45%] lg:top-[45%] -translate-y-1/2 z-20 w-24 h-24 lg:w-32 lg:h-32 rounded-full hidden lg:flex items-center justify-center group/circle transition-transform duration-500 cursor-pointer text-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 opacity-0 animate-fade-in-up hover:scale-105" style={{ animationDelay: '0.6s' }}>
-              <svg className="absolute inset-0 w-full h-full animate-[spin_12s_linear_infinite] group-hover/circle:animate-[spin_8s_linear_infinite]" viewBox="0 0 200 200">
-                <path id="textPath" d="M 100, 100 m -70, 0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0" fill="none" />
-                <text className="text-[13px] uppercase font-bold tracking-[0.25em] fill-current" textLength="430">
-                  <textPath href="#textPath" startOffset="0%">
-                    BOOK AN APPOINTMENT &bull; BOOK AN APPOINTMENT &bull; 
-                  </textPath>
-                </text>
-              </svg>
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-primary text-background rounded-full flex items-center justify-center z-10 shadow-lg transform transition-transform duration-500 group-hover/circle:scale-110 group-hover/circle:-rotate-12">
-                <span className="text-lg lg:text-xl font-serif leading-none">&rarr;</span>
-              </div>
-            </Link>
-
             {/* Floating Tooth */}
-            <div className="absolute right-[5vw] lg:right-[-2vw] top-[10%] lg:top-[30%] z-20 group/tooth cursor-default opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
+            <div className="absolute right-[4vw] lg:right-[-1.5vw] top-[8%] lg:top-[26%] z-20 group/tooth cursor-default opacity-0 animate-fade-in-up" style={{ animationDelay: '0.9s' }}>
               <div className="w-8 h-8 lg:w-12 lg:h-12 bg-background rounded-xl lg:rounded-2xl shadow-xl border border-border/50 flex items-center justify-center motion-safe:animate-float transform transition-transform duration-500 group-hover/tooth:scale-110 group-hover/tooth:rotate-12">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-primary w-3.5 h-3.5 lg:w-5 lg:h-5">
                   <path d="M12 22s-4-2-4-7V9a4 4 0 0 1 8 0v6c0 5-4 7-4 7z"></path>
@@ -95,7 +114,7 @@ const Hero = () => {
             </div>
 
             {/* Editorial Doctor Signature */}
-            <div className="absolute bottom-2 lg:bottom-12 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-[-2vw] xl:-right-8 bg-white/95 backdrop-blur-sm px-4 py-2.5 lg:px-6 lg:py-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-lg lg:rounded-xl flex flex-col items-center lg:items-start z-30 group/signature cursor-default border border-white/60 w-max max-w-[85vw]">
+            <div className="absolute bottom-2 lg:bottom-8 xl:bottom-10 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-[-1vw] xl:-right-6 bg-white/95 backdrop-blur-sm px-4 py-2.5 lg:px-6 lg:py-4 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-lg lg:rounded-xl flex flex-col items-center lg:items-start z-30 group/signature cursor-default border border-white/60 w-max max-w-[85vw]">
               <div className="w-4 lg:w-6 h-[1.5px] bg-primary/80 mb-1.5 lg:mb-2.5 origin-center lg:origin-left transform transition-transform duration-500 group-hover/signature:scale-x-150 opacity-0 animate-[editorial-reveal_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards]" style={{ animationDelay: '0.9s' }}></div>
               <p className="text-[15px] sm:text-base lg:text-[26px] font-serif font-medium text-text leading-none opacity-0 animate-[editorial-reveal_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] transition-transform duration-300 group-hover/signature:-translate-y-1" style={{ animationDelay: '1.0s' }}>
                 Dr. Anchit Thukral

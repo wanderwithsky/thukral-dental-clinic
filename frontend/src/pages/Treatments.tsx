@@ -686,6 +686,50 @@ const Treatments = () => {
                 />
               </div>
             </div>
+
+            {/* Category 5: 3D CBCT Dental Imaging Service Card */}
+            <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <div className="mb-8 flex items-center justify-between border-b border-border pb-4">
+                <div className="flex items-center gap-4">
+                  <span className="text-xl font-serif text-primary">05 /</span>
+                  <h3 className="text-2xl md:text-3xl font-serif text-text tracking-[0.05em] uppercase">
+                    Advanced Diagnostics &amp; 3D Imaging
+                  </h3>
+                </div>
+                <span className="text-xs text-text-muted uppercase tracking-wider hidden sm:inline">
+                  In-House CBCT Facility
+                </span>
+              </div>
+
+              <div className="rounded-3xl bg-gradient-to-br from-[#2E241E] via-[#211A16] to-[#171310] border border-[#3E322A] p-8 sm:p-12 text-[#FAF8F5] shadow-2xl relative overflow-hidden group">
+                <div className="relative z-10 max-w-3xl">
+                  <div className="inline-flex items-center gap-2 mb-4 px-3.5 py-1 rounded-full bg-white/[0.08] border border-white/10 text-[#C5A880] text-xs font-semibold tracking-widest uppercase">
+                    <span>3D DENTAL RADIOLOGY</span>
+                  </div>
+
+                  <h4 className="text-3xl sm:text-4xl md:text-5xl font-serif text-[#FAF8F5] mb-4 leading-tight">
+                    3D CBCT Dental Imaging
+                  </h4>
+
+                  <p className="text-base sm:text-lg text-[#E8D8C4]/85 font-light leading-relaxed mb-8">
+                    Explore three-dimensional dental imaging for cases where additional anatomical detail may help support diagnosis and treatment planning.
+                  </p>
+
+                  <Link
+                    to="/treatments/cbct"
+                    className="inline-flex items-center gap-3 bg-[#C5A880] hover:bg-[#FAF8F5] text-[#211A16] font-medium tracking-wider text-xs sm:text-sm uppercase px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group/btn"
+                  >
+                    <span>Explore CBCT Imaging</span>
+                    <ArrowRight size={16} className="transform transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </Link>
+                </div>
+
+                {/* Subtle conceptual decorative watermark */}
+                <div className="absolute right-[-5%] bottom-[-15%] text-[18vw] font-serif font-black text-white/[0.03] select-none pointer-events-none tracking-tighter">
+                  CBCT
+                </div>
+              </div>
+            </div>
             
           </div>
         </div>

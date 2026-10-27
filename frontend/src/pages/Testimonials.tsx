@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
+import CustomVideoPlayer from '../components/CustomVideoPlayer';
+
+const FEATURED_PATIENT_VIDEO_URL = "https://res.cloudinary.com/zvlxacfu/video/upload/v1793009612/Trust._Care._Exceptional_smiles._There_s_no_better_compliment_than_a_patient_s_genuine_words.mp4";
 
 const Testimonials = () => {
   return (
     <div className="min-h-screen bg-background">
-      {/* Premium Hero & First Video Section */}
+      {/* Premium Hero & Featured Patient Video Section */}
       <section className="relative w-full pt-32 pb-20 lg:pt-40 lg:pb-24 overflow-hidden">
         {/* Subtle Background Accent */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
@@ -12,29 +15,27 @@ const Testimonials = () => {
           
           <div className="text-center max-w-3xl mx-auto mb-12 lg:mb-16 opacity-0 animate-fade-in-up">
             <span className="text-xs md:text-sm font-semibold tracking-[0.2em] uppercase text-primary mb-4 block">
-              PATIENT TESTIMONIALS
+              PATIENT STORIES
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.15] text-text mb-6">
-              Real Experiences. <br className="hidden md:block" />
-              <span className="italic text-primary">Real Confidence.</span>
+              Trust, Care &amp; <br className="hidden md:block" />
+              <span className="italic text-primary">Exceptional Smiles.</span>
             </h1>
             <p className="text-base md:text-lg text-text-muted leading-relaxed font-light">
-              Every patient has a different concern, a different journey, and a different experience. Hear directly from our patients about their time at Thukral Dental & Aesthetic Clinic.
+              Hear real patient experiences and discover what matters to patients throughout their dental care journey at Thukral Dental &amp; Aesthetic Clinic.
             </p>
           </div>
 
           <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 max-w-6xl mx-auto opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             
-            {/* Left: Video */}
+            {/* Left: Featured Video with Custom 3-Button Controls (9:16 Portrait) */}
             <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
-              <div className="relative w-full md:w-3/4 lg:w-full max-w-[700px] rounded-[2rem] overflow-hidden shadow-2xl border border-border/50 bg-background/50 p-2 md:p-3 transition-transform duration-700 hover:shadow-3xl">
-                <video 
-                  src="https://res.cloudinary.com/zvlxacfu/video/upload/v1790667176/IMG_5498.mp4" 
-                  controls 
-                  muted 
-                  playsInline 
-                  className="w-full h-auto rounded-2xl object-contain shadow-inner"
-                  preload="metadata"
+              <div className="w-full max-w-[340px] sm:max-w-[380px] md:max-w-[400px]">
+                <CustomVideoPlayer 
+                  videoUrl={FEATURED_PATIENT_VIDEO_URL}
+                  ariaLabel="Trust, Care and Exceptional Smiles patient testimonial"
+                  aspectRatioClass="aspect-[9/16]"
+                  className="rounded-2xl sm:rounded-3xl border border-border/80 shadow-2xl transition-transform duration-700 hover:shadow-3xl"
                 />
               </div>
             </div>
@@ -42,18 +43,18 @@ const Testimonials = () => {
             {/* Right: Text */}
             <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left max-w-lg mx-auto lg:mx-0">
               <span className="text-xs font-semibold tracking-[0.2em] uppercase text-text-muted mb-4 block opacity-80">
-                PATIENT TESTIMONIAL
+                PATIENT STORIES
               </span>
               <h3 className="text-3xl md:text-4xl font-serif text-text mb-6 leading-tight">
-                “Your experience <br /> <span className="italic">matters.</span>”
+                “Trust, Care &amp; <br /> <span className="italic text-primary">Exceptional Smiles.</span>”
               </h3>
               
               <div className="space-y-4 text-base text-text-muted leading-relaxed font-light mb-10">
                 <p>
-                  From the first consultation to the treatment journey, our focus is on making patients feel informed, comfortable and cared for.
+                  Hear real patient experiences and discover what matters to patients throughout their dental care journey.
                 </p>
                 <p>
-                  Watch our patients share their experience in their own words.
+                  From the first consultation to the final smile outcome, our commitment is to provide transparent, compassionate, and personalized care.
                 </p>
               </div>
 
@@ -63,9 +64,15 @@ const Testimonials = () => {
                 <p className="text-sm text-text-muted mb-6 relative z-10">
                   Book a consultation and discuss your dental concerns with our team.
                 </p>
-                <Link to="/appointment" className="btn-primary w-full relative z-10 justify-center">
-                  BOOK AN APPOINTMENT &rarr;
-                </Link>
+                <div className="flex justify-center lg:justify-start relative z-10 pt-1">
+                  <Link 
+                    to="/appointment" 
+                    className="inline-flex items-center text-sm font-medium uppercase tracking-wider text-text border-b border-text/40 pb-1 hover:border-primary hover:text-primary transition-all group focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-sm"
+                  >
+                    <span>BOOK AN APPOINTMENT</span>
+                    <span className="ml-2 transform transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
+                  </Link>
+                </div>
               </div>
             </div>
 

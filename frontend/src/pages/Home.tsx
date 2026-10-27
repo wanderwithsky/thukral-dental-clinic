@@ -8,6 +8,7 @@ import ReviewsSection from '../components/ReviewsSection';
 import WhyThukral from '../components/WhyThukral';
 import PatientJourney from '../components/PatientJourney';
 import Gallery from '../components/Gallery';
+import SmileSchoolPreview from '../components/SmileSchoolPreview';
 import AppointmentForm from '../components/AppointmentForm';
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
       <TreatmentsSection />
       <FeaturedSmileSection />
       <ReviewsSection />
+      <SmileSchoolPreview />
       <PatientJourney />
       <Gallery />
       <AppointmentForm />

@@ -57,6 +57,7 @@ const Footer = () => {
                 { name: 'About', path: '/about' },
                 { name: 'Why Thukral', path: '/why-thukral' },
                 { name: 'Treatments', path: '/treatments' },
+                { name: 'Smile School', path: '/learn' },
                 { name: 'Testimonials', path: '/testimonials' },
                 { name: 'Contact', path: '/contact' }
               ].map((item) => (

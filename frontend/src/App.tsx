@@ -9,6 +9,8 @@ import Terms from './pages/Terms';
 import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
 import WhyThukralPage from './pages/WhyThukralPage';
+import LearnPage from './pages/LearnPage';
+import CbctPage from './pages/CbctPage';
 import AdminDashboard from './pages/AdminDashboard';
 import { AdminAuthProvider } from './context/AdminAuthContext';
 
@@ -29,8 +31,10 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/why-thukral" element={<WhyThukralPage />} />
                   <Route path="/treatments" element={<Treatments />} />
+                  <Route path="/treatments/cbct" element={<CbctPage />} />
                   <Route path="/appointment" element={<Appointment />} />
                   <Route path="/about" element={<About />} />
+                  <Route path="/learn" element={<LearnPage />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-and-conditions" element={<Terms />} />
