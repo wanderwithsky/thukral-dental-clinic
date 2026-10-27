@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import * as THREE from 'three';
-import { Maximize2, Minimize2, RotateCcw, AlertCircle, X, Move } from 'lucide-react';
+import { Maximize2, RotateCcw, AlertCircle, Move } from 'lucide-react';
 
 export type ModelType = 'machine' | 'scan';
 
@@ -25,7 +25,6 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mountRef = useRef<HTMLDivElement>(null);
-  const fullscreenMountRef = useRef<HTMLDivElement>(null);
 
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const sceneRef = useRef<THREE.Scene | null>(null);
@@ -276,7 +275,7 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
 
     const scene = new THREE.Scene();
     sceneRef.current = scene;
-    scene.background = new THREE.Color(0x16120f);
+    scene.background = new THREE.Color(0x0e0b09); // Solid dark backdrop
 
     const camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 100);
     camera.position.set(0, 0.2, defaultZoom);
@@ -366,32 +365,52 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
     secondaryGroupRef.current = null;
   }, []);
 
+  // Update renderer size on container resize
+  const resizeViewer = useCallback(() => {
+    const el = mountRef.current;
+    if (!el || !cameraRef.current || !rendererRef.current) return;
+    const w = el.clientWidth;
+    const h = el.clientHeight;
+    cameraRef.current.aspect = w / h;
+    cameraRef.current.updateProjectionMatrix();
+    rendererRef.current.setSize(w, h);
+  }, []);
+
   // Mount/Unmount effect
   useEffect(() => {
-    const el = isFullscreen ? fullscreenMountRef.current : mountRef.current;
+    const el = mountRef.current;
     if (el) {
       initScene(el);
     }
 
     const handleResize = () => {
-      const activeEl = isFullscreen ? fullscreenMountRef.current : mountRef.current;
-      if (!activeEl || !cameraRef.current || !rendererRef.current) return;
-      const w = activeEl.clientWidth;
-      const h = activeEl.clientHeight;
-      cameraRef.current.aspect = w / h;
-      cameraRef.current.updateProjectionMatrix();
-      rendererRef.current.setSize(w, h);
+      resizeViewer();
     };
 
     window.addEventListener('resize', handleResize);
 
+    // Fullscreen change listener to sync state with native browser events
+    const handleFullscreenChange = () => {
+      const isCurrentlyFullscreen = document.fullscreenElement === mountRef.current;
+      setIsFullscreen(isCurrentlyFullscreen);
+      // Small timeout to allow browser layout to complete before updating canvas
+      setTimeout(() => {
+        resizeViewer();
+      }, 50);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+
     return () => {
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
       destroyScene(el);
     };
-  }, [isFullscreen, initScene, destroyScene]);
+  }, [initScene, destroyScene, resizeViewer]);
 
-  // Pointer Interaction Handlers
+  // Pointer Interaction Handlers (Works seamlessly in both card & fullscreen mode)
   const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     isDraggingRef.current = true;
     isUserInteractingRef.current = true;
@@ -407,8 +426,8 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
 
     modelGroupRef.current.rotation.y += deltaX * 0.008;
     modelGroupRef.current.rotation.x = Math.max(
-      -0.6,
-      Math.min(0.8, modelGroupRef.current.rotation.x + deltaY * 0.008)
+      -0.8,
+      Math.min(0.9, modelGroupRef.current.rotation.x + deltaY * 0.008)
     );
 
     prevPointerPosRef.current = { x: e.clientX, y: e.clientY };
@@ -432,8 +451,8 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
     e.preventDefault();
     isUserInteractingRef.current = true;
     const zoomDelta = e.deltaY * 0.003;
-    const minZoom = type === 'machine' ? 2.6 : 2.2;
-    const maxZoom = type === 'machine' ? 6.5 : 5.8;
+    const minZoom = type === 'machine' ? 2.2 : 1.8;
+    const maxZoom = type === 'machine' ? 7.0 : 6.2;
     cameraRef.current.position.z = Math.max(minZoom, Math.min(maxZoom, cameraRef.current.position.z + zoomDelta));
 
     if (userInteractedTimeoutRef.current) clearTimeout(userInteractedTimeoutRef.current);
@@ -454,77 +473,100 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
     isUserInteractingRef.current = false;
   };
 
-  const toggleFullscreen = (e: React.MouseEvent) => {
+  // Dedicated Fullscreen API invocation on mountRef ONLY (no UI, no labels, pure 3D canvas)
+  const toggleFullscreen = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsFullscreen((prev) => !prev);
+    const target = mountRef.current;
+    if (!target) return;
+
+    try {
+      if (!document.fullscreenElement) {
+        if (target.requestFullscreen) {
+          await target.requestFullscreen();
+        } else if ((target as any).webkitRequestFullscreen) {
+          await (target as any).webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          await document.exitFullscreen();
+        } else if ((document as any).webkitExitFullscreen) {
+          await (document as any).webkitExitFullscreen();
+        }
+      }
+    } catch (err) {
+      console.error('Fullscreen request error:', err);
+    }
   };
 
   return (
-    <>
-      {/* Standard In-Card Viewer Container */}
+    <div
+      ref={containerRef}
+      className={`relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#29201a] via-[#1e1713] to-[#140f0c] border border-[#3e322a]/90 flex flex-col justify-between p-4 sm:p-5 text-left group shadow-lg ${className}`}
+    >
+      {/* Header Bar (Visible ONLY in normal card mode, excluded from fullscreen container) */}
+      <div className="flex items-center justify-between z-10 pointer-events-none">
+        <span className="text-[10px] font-mono tracking-widest text-[#E8D8C4]/80 uppercase px-2.5 py-1 rounded-full bg-black/50 border border-white/10 backdrop-blur-sm">
+          {badge}
+        </span>
+        <div className="flex items-center gap-1.5 pointer-events-auto">
+          <button
+            type="button"
+            onClick={handleReset}
+            className="w-7 h-7 rounded-full bg-black/60 hover:bg-[#C5A880] text-white hover:text-[#181310] border border-white/10 flex items-center justify-center transition-all cursor-pointer"
+            title="Reset 3D View"
+            aria-label="Reset 3D model orientation"
+          >
+            <RotateCcw size={12} />
+          </button>
+          <button
+            type="button"
+            onClick={toggleFullscreen}
+            className="w-7 h-7 rounded-full bg-black/60 hover:bg-[#C5A880] text-white hover:text-[#181310] border border-white/10 flex items-center justify-center transition-all cursor-pointer"
+            title="Expand to Fullscreen"
+            aria-label="Expand 3D model to full-screen view"
+          >
+            <Maximize2 size={12} />
+          </button>
+        </div>
+      </div>
+
+      {/* DEDICATED 3D VIEWER CONTAINER:
+          This container is what enters native fullscreen!
+          In fullscreen, it fills 100vw x 100vh with a solid dark background and contains ONLY the WebGL canvas.
+          Zero text labels, zero navbars, zero tooltips, zero buttons.
+      */}
       <div
-        ref={containerRef}
-        className={`relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#29201a] via-[#1e1713] to-[#140f0c] border border-[#3e322a]/90 flex flex-col justify-between p-4 sm:p-5 text-left group shadow-lg ${className}`}
+        ref={mountRef}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onWheel={handleWheel}
+        className="absolute inset-0 z-0 cursor-grab active:cursor-grabbing touch-none select-none bg-[#0e0b09]"
+        role="region"
+        aria-label={`Interactive 3D ${title}. Drag to rotate 360 degrees, scroll to zoom.`}
       >
-        {/* Header Bar */}
-        <div className="flex items-center justify-between z-10 pointer-events-none">
-          <span className="text-[10px] font-mono tracking-widest text-[#E8D8C4]/80 uppercase px-2.5 py-1 rounded-full bg-black/50 border border-white/10 backdrop-blur-sm">
-            {badge}
-          </span>
-          <div className="flex items-center gap-1.5 pointer-events-auto">
-            <button
-              type="button"
-              onClick={handleReset}
-              className="w-7 h-7 rounded-full bg-black/60 hover:bg-[#C5A880] text-white hover:text-[#181310] border border-white/10 flex items-center justify-center transition-all cursor-pointer"
-              title="Reset 3D View"
-              aria-label="Reset 3D model orientation"
-            >
-              <RotateCcw size={12} />
-            </button>
-            <button
-              type="button"
-              onClick={toggleFullscreen}
-              className="w-7 h-7 rounded-full bg-black/60 hover:bg-[#C5A880] text-white hover:text-[#181310] border border-white/10 flex items-center justify-center transition-all cursor-pointer"
-              title="Expand to Fullscreen"
-              aria-label="Expand 3D model to full-screen view"
-            >
-              <Maximize2 size={12} />
-            </button>
+        {/* Loading Indicator (Only visible before model renders) */}
+        {isLoading && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#0e0b09] z-20 pointer-events-none">
+            <div className="w-8 h-8 rounded-full border-2 border-[#C5A880] border-t-transparent animate-spin mb-2" />
+            <span className="text-[10px] font-mono uppercase tracking-wider text-[#E8D8C4]/70">
+              Loading 3D Model...
+            </span>
           </div>
-        </div>
+        )}
 
-        {/* 3D Canvas Area */}
-        <div
-          ref={mountRef}
-          onPointerDown={handlePointerDown}
-          onPointerMove={handlePointerMove}
-          onPointerUp={handlePointerUp}
-          onWheel={handleWheel}
-          className="absolute inset-0 z-0 cursor-grab active:cursor-grabbing touch-none select-none"
-          role="region"
-          aria-label={`Interactive 3D ${title}. Drag to rotate 360 degrees, scroll to zoom.`}
-        >
-          {/* Loading Indicator */}
-          {isLoading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center bg-[#181310] z-20">
-              <div className="w-8 h-8 rounded-full border-2 border-[#C5A880] border-t-transparent animate-spin mb-2" />
-              <span className="text-[10px] font-mono uppercase tracking-wider text-[#E8D8C4]/70">
-                Loading 3D Model...
-              </span>
-            </div>
-          )}
+        {/* WebGL Unsupported Fallback */}
+        {!webGlSupported && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-[#0e0b09] z-20">
+            <AlertCircle size={28} className="text-[#C5A880] mb-2" />
+            <p className="text-xs text-[#FAF8F5] font-serif mb-1">3D Graphics Unavailable</p>
+            <p className="text-[10px] text-[#E8D8C4]/60">Requires WebGL acceleration.</p>
+          </div>
+        )}
+      </div>
 
-          {/* WebGL Unsupported Fallback */}
-          {!webGlSupported && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center bg-[#181310] z-20">
-              <AlertCircle size={28} className="text-[#C5A880] mb-2" />
-              <p className="text-xs text-[#FAF8F5] font-serif mb-1">3D Graphics Unavailable</p>
-              <p className="text-[10px] text-[#E8D8C4]/60">Requires WebGL acceleration.</p>
-            </div>
-          )}
-        </div>
-
-        {/* Mid-overlay interaction hint */}
+      {/* Mid-overlay interaction hint (Visible only in normal card mode) */}
+      {!isFullscreen && (
         <div className="absolute bottom-16 left-4 right-4 flex items-center justify-between z-10 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity">
           <span className="inline-flex items-center gap-1 text-[10px] font-mono text-[#E8D8C4]/80 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
             <Move size={10} className="text-[#C5A880]" />
@@ -534,8 +576,10 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
             Scroll Zoom
           </span>
         </div>
+      )}
 
-        {/* Card Footer Caption */}
+      {/* Card Footer Caption (Visible only in normal card mode) */}
+      {!isFullscreen && (
         <div className="z-10 pt-2 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-[#E8D8C4]/80 bg-gradient-to-t from-[#140f0c]/90 via-[#140f0c]/60 to-transparent -mx-4 -mb-4 sm:-mx-5 sm:-mb-5 p-4 sm:p-5 pointer-events-none">
           <div>
             <div className="flex items-center gap-2">
@@ -554,85 +598,8 @@ export const Hero3DViewerCard: React.FC<Hero3DViewerCardProps> = ({
             {tagRight}
           </span>
         </div>
-      </div>
-
-      {/* Full-Screen Immersive Modal */}
-      {isFullscreen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-lg animate-fadeIn p-4 sm:p-8">
-          <div className="relative w-full h-full max-w-5xl max-h-[85vh] bg-[#16120f] border border-[#3e322a] rounded-3xl overflow-hidden flex flex-col shadow-2xl">
-            {/* Modal Header */}
-            <div className="p-4 sm:p-6 border-b border-white/10 flex items-center justify-between bg-black/40 z-20">
-              <div>
-                <span className="text-[10px] font-mono tracking-widest text-[#C5A880] uppercase block mb-1">
-                  IMMERSIVE 3D VIEWER &middot; {badge}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-serif text-[#FAF8F5]">
-                  {title}
-                </h3>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-[#C5A880] text-white hover:text-[#181310] border border-white/15 text-xs font-medium tracking-wide flex items-center gap-1.5 transition-all cursor-pointer"
-                  title="Reset 3D Model View"
-                >
-                  <RotateCcw size={12} />
-                  <span>Reset Orientation</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={toggleFullscreen}
-                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-red-500/20 text-white hover:text-red-300 border border-white/15 flex items-center justify-center transition-all cursor-pointer"
-                  title="Close Fullscreen"
-                  aria-label="Close full-screen 3D viewer"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-            </div>
-
-            {/* Modal 3D Mount Area */}
-            <div
-              ref={fullscreenMountRef}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              onWheel={handleWheel}
-              className="relative flex-1 w-full h-full cursor-grab active:cursor-grabbing touch-none select-none overflow-hidden"
-              role="region"
-              aria-label={`Full-screen interactive 3D ${title}. Drag to rotate, mouse wheel to zoom.`}
-            >
-              {/* Interaction instructions */}
-              <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-center justify-between gap-3 z-10 pointer-events-none">
-                <div className="flex items-center gap-2 bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs text-[#FAF8F5]">
-                  <Move size={14} className="text-[#C5A880]" />
-                  <span>Click and drag with mouse or touch to rotate 360&deg;</span>
-                </div>
-                <div className="bg-black/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-xs text-[#E8D8C4]/80">
-                  Scroll mouse wheel or pinch to zoom
-                </div>
-              </div>
-            </div>
-
-            {/* Modal Footer Description */}
-            <div className="p-4 sm:p-5 border-t border-white/10 bg-black/40 flex items-center justify-between text-xs text-[#E8D8C4]/80 z-20">
-              <p className="max-w-2xl font-light">
-                {subtext}
-              </p>
-              <button
-                type="button"
-                onClick={toggleFullscreen}
-                className="hidden sm:inline-flex items-center gap-1.5 text-xs uppercase tracking-wider text-[#C5A880] hover:text-white transition-colors cursor-pointer"
-              >
-                <Minimize2 size={14} />
-                <span>Exit Fullscreen</span>
-              </button>
-            </div>
-          </div>
-        </div>
       )}
-    </>
+    </div>
   );
 };
 
