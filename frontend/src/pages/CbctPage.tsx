@@ -9,12 +9,11 @@ import {
   Scan, 
   Eye, 
   Activity, 
-  Info, 
-  CheckCircle2, 
   Sparkles,
   Calendar,
   AlertTriangle
 } from 'lucide-react';
+import InteractiveCbctScanner from '../components/InteractiveCbctScanner';
 
 const CbctPage = () => {
   // Update document title and meta description
@@ -211,11 +210,11 @@ const CbctPage = () => {
         </div>
       </section>
 
-      {/* 2. EXPLAIN WHAT CBCT IS + VISUAL COMPARISON */}
+      {/* 2. CBCT TECHNOLOGY SHOWCASE: LARGE 2D PHOTOGRAPH & INTERACTIVE 3D MODEL */}
       <section id="cbct-overview" className="py-20 lg:py-28 bg-background border-b border-border">
-        <div className="page-container max-w-5xl mx-auto">
+        <div className="page-container max-w-7xl mx-auto">
           
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 lg:mb-20 max-w-3xl mx-auto">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-primary mb-3 block">
               UNDERSTANDING CBCT
             </span>
@@ -223,7 +222,7 @@ const CbctPage = () => {
               What Is CBCT Imaging?
             </h2>
             <div className="w-16 h-[1px] bg-primary mx-auto mb-8" />
-            <div className="text-base sm:text-lg text-text-muted font-light leading-relaxed max-w-3xl mx-auto space-y-4">
+            <div className="text-base sm:text-lg text-text-muted font-light leading-relaxed space-y-4">
               <p>
                 CBCT stands for <strong>Cone Beam Computed Tomography</strong>. It is a specialised dental imaging technique that uses X-rays to create three-dimensional images of teeth, jawbones and selected surrounding anatomical structures.
               </p>
@@ -233,60 +232,160 @@ const CbctPage = () => {
             </div>
           </div>
 
-          {/* Visual Comparison: 2D vs 3D */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+          {/* TWO LARGE VISUAL PANELS (Min 500px Height, ~50% Width Each) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
             
-            {/* Conventional 2D X-ray card */}
-            <div className="p-8 rounded-2xl bg-background-secondary border border-border/80 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold tracking-wider uppercase text-text-muted">
-                    Conventional Dental X-Ray
+            {/* LEFT PANEL: 2D CBCT Machine Photograph */}
+            <div className="flex flex-col justify-between rounded-3xl bg-background-secondary/70 border border-border/80 p-6 sm:p-8 md:p-10 shadow-lg hover:shadow-2xl transition-all duration-500 min-h-[560px]">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <span className="text-xs font-semibold tracking-[0.2em] uppercase text-primary">
+                    2D EQUIPMENT VIEW
                   </span>
-                  <span className="text-xs font-mono px-2.5 py-1 rounded bg-border/40 text-text">
-                    2D Representation
+                  <span className="text-[10px] font-mono tracking-widest uppercase text-text-muted/80 bg-background px-2.5 py-1 rounded-full border border-border/60">
+                    Illustrative Scanner
                   </span>
                 </div>
-                <h3 className="text-xl font-serif text-text mb-3">Single Flat Projection</h3>
-                <p className="text-sm text-text-muted font-light leading-relaxed mb-6">
-                  Standard intraoral or panoramic radiographs project anatomical structures onto a single two-dimensional plane. While essential for regular checkups, structures can overlap in complex regions.
+                <h3 className="text-2xl sm:text-3xl font-serif text-text leading-snug">
+                  The CBCT Scanner
+                </h3>
+                <p className="mt-2 text-sm text-text-muted font-light leading-relaxed">
+                  Explore the imaging equipment used to capture detailed dental scans when additional anatomical information is clinically needed.
                 </p>
               </div>
-              <div className="pt-4 border-t border-border/60 text-xs text-text-muted flex items-center gap-2">
-                <Info size={14} className="text-primary shrink-0" />
-                <span>Primary standard for routine cavities and dental checkups.</span>
+
+              {/* Large Image Frame (Entire Scanner Visible) */}
+              <div className="relative w-full h-[380px] sm:h-[440px] md:h-[480px] rounded-2xl overflow-hidden bg-gradient-to-b from-[#FAF8F5] to-[#EFEBE4] border border-border/70 flex items-center justify-center p-3 sm:p-4 group">
+                <img
+                  src="/images/cbct-scanner-2d.jpg"
+                  alt="Modern Dental Cone Beam CT Scanner Equipment"
+                  className="w-full h-full object-contain object-center transform transition-transform duration-700 group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+                <div className="absolute bottom-3 right-3 text-[10px] uppercase font-mono tracking-wider px-2 py-0.5 rounded bg-black/60 text-white/90 backdrop-blur-sm pointer-events-none">
+                  Photographic View
+                </div>
+              </div>
+
+              {/* Footer Note */}
+              <div className="mt-6 pt-4 border-t border-border/60 flex items-center justify-between text-xs text-text-muted">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  <span>Physical Unit Layout &amp; C-Arm Architecture</span>
+                </span>
+                <span className="italic text-[11px] text-text-muted/70">
+                  Equipment Illustration
+                </span>
               </div>
             </div>
 
-            {/* CBCT 3D Scan card */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-[#2E241E] via-[#211A16] to-[#171310] text-[#FAF8F5] border border-[#3E322A] shadow-xl flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-semibold tracking-wider uppercase text-[#C5A880]">
-                    Cone Beam CT (CBCT)
+            {/* RIGHT PANEL: Interactive 3D CBCT Scanner Model */}
+            <div className="flex flex-col justify-between rounded-3xl bg-gradient-to-br from-[#2E241E] via-[#211A16] to-[#171310] text-[#FAF8F5] border border-[#3E322A] p-6 sm:p-8 md:p-10 shadow-2xl transition-all duration-500 min-h-[560px]">
+              {/* Header */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between gap-3 mb-2">
+                  <span className="text-xs font-semibold tracking-[0.2em] uppercase text-[#C5A880]">
+                    INTERACTIVE 3D MODEL
                   </span>
-                  <span className="text-xs font-mono px-2.5 py-1 rounded bg-[#C5A880]/20 text-[#FAF8F5] border border-[#C5A880]/30">
-                    3D Volumetric View
+                  <span className="text-[10px] font-mono tracking-widest uppercase text-[#FAF8F5]/80 bg-white/[0.08] px-2.5 py-1 rounded-full border border-white/10">
+                    Realtime WebGL
                   </span>
                 </div>
-                <h3 className="text-xl font-serif text-[#FAF8F5] mb-3">Reconstructed Multi-Planar Views</h3>
-                <p className="text-sm text-[#E8D8C4]/80 font-light leading-relaxed mb-6">
-                  Captures a cylinder of data that is reconstructed into cross-sectional, axial, sagittal, and panoramic 3D slices. Eliminates anatomical superimposition when deeper detail is clinically needed.
+                <h3 className="text-2xl sm:text-3xl font-serif text-[#FAF8F5] leading-snug">
+                  Explore CBCT in 3D
+                </h3>
+                <p className="mt-2 text-sm text-[#E8D8C4]/80 font-light leading-relaxed">
+                  Rotate the model to explore the scanner's structure and understand how three-dimensional dental imaging is performed.
                 </p>
               </div>
-              <div className="pt-4 border-t border-white/10 text-xs text-[#E8D8C4]/70 flex items-center gap-2">
-                <CheckCircle2 size={14} className="text-[#C5A880] shrink-0" />
-                <span>Applied when specific anatomical questions require depth evaluation.</span>
+
+              {/* Large Interactive 3D Canvas */}
+              <div className="relative w-full rounded-2xl overflow-hidden border border-[#3E322A]/80 bg-[#181310] shadow-inner">
+                <InteractiveCbctScanner />
+              </div>
+
+              {/* Footer Note */}
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#E8D8C4]/70">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0ea5e9]" />
+                  <span>Interactive 3D Geometry (Drag to Rotate &middot; Scroll to Zoom)</span>
+                </span>
+                <span className="italic text-[11px] text-[#E8D8C4]/60">
+                  Illustrative 3D Model
+                </span>
               </div>
             </div>
 
           </div>
 
-          {/* Clinical Balance Disclaimer */}
-          <div className="mt-8 text-center">
-            <p className="text-xs text-text-muted italic max-w-2xl mx-auto">
-              Please note: CBCT is not automatically better for every dental condition. The appropriate imaging method is determined strictly by the specific clinical question being investigated.
-            </p>
+          {/* 4. HELPFUL TECHNICAL EXPLANATION & PROGRESSION DIAGRAM */}
+          <div className="mt-16 lg:mt-24 p-8 sm:p-12 rounded-3xl bg-background-secondary border border-border/80 shadow-sm max-w-5xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto mb-10">
+              <span className="text-xs font-semibold tracking-[0.25em] uppercase text-primary mb-2 block">
+                TECHNICAL PRINCIPLE
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-serif text-text mb-4">
+                From X-Ray Projections to a 3D View.
+              </h3>
+              <p className="text-base text-text-muted font-light leading-relaxed">
+                CBCT systems capture multiple X-ray projections around the relevant area. Software reconstructs this information into a three-dimensional volume that clinicians can inspect from different angles.
+              </p>
+            </div>
+
+            {/* Progression Flow: CBCT Scanner → Image Acquisition → Reconstructed 3D Volume */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+              
+              {/* Step 1 */}
+              <div className="p-6 rounded-2xl bg-background border border-border/70 flex flex-col justify-between text-center relative group">
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <Scan size={22} />
+                  </div>
+                  <span className="text-xs font-mono font-bold text-primary block mb-1">STAGE 01</span>
+                  <h4 className="text-lg font-serif text-text mb-2">CBCT Scanner</h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
+                    The physical equipment positions the patient and guides the X-ray tube and detector around the targeted anatomical region.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="p-6 rounded-2xl bg-background border border-border/70 flex flex-col justify-between text-center relative group">
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <Layers size={22} />
+                  </div>
+                  <span className="text-xs font-mono font-bold text-primary block mb-1">STAGE 02</span>
+                  <h4 className="text-lg font-serif text-text mb-2">Image Acquisition</h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
+                    A single rotational sweep records hundreds of distinct 2D raw projection images within a cone-shaped radiation beam.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="p-6 rounded-2xl bg-background border border-border/70 flex flex-col justify-between text-center relative group">
+                <div>
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 group-hover:scale-105 transition-transform">
+                    <Activity size={22} />
+                  </div>
+                  <span className="text-xs font-mono font-bold text-primary block mb-1">STAGE 03</span>
+                  <h4 className="text-lg font-serif text-text mb-2">Reconstructed 3D Volume</h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
+                    Advanced algorithms convert raw projections into a multi-planar 3D volumetric view of teeth, roots, and bone density.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Terminology Clarity Callout */}
+            <div className="mt-8 pt-6 border-t border-border/60 text-center">
+              <p className="text-xs text-text-muted font-light italic max-w-3xl mx-auto">
+                <strong>Clinical Note:</strong> A 2D photograph of the machine shows the physical equipment; the interactive 3D model demonstrates the equipment's spatial shape; the actual CBCT scan is reconstructed into a three-dimensional view of the patient's dental anatomy. CBCT is recommended based strictly on diagnostic indication.
+              </p>
+            </div>
           </div>
 
         </div>
