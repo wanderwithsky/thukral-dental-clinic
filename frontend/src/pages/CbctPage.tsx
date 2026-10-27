@@ -912,15 +912,7 @@ const CbctPage = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
 
-                        {/* Top Badges */}
-                        <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                          <span className="text-[11px] font-mono tracking-widest uppercase text-white/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                            {viewDetails.indicator}
-                          </span>
-                          <span className="text-xs font-mono font-medium text-amber-300/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                            {viewDetails.plane}
-                          </span>
-                        </div>
+
 
                         {/* Bottom Overlay Info */}
                         <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 pointer-events-none">
