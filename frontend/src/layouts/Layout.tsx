@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import AppointmentPopup from '../components/AppointmentPopup';
+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton';
 import { AppointmentModalProvider } from '../context/AppointmentModalContext';
 
 interface LayoutProps {
@@ -16,6 +17,7 @@ const Layout = ({ children }: LayoutProps) => {
         <main className="flex-grow">{children}</main>
         <Footer />
         <AppointmentPopup />
+        <FloatingWhatsAppButton />
       </div>
     </AppointmentModalProvider>
   );
