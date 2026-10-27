@@ -6,13 +6,13 @@ import {
   ChevronDown, 
   Layers,
   Scan, 
-  Eye, 
   Activity, 
   Sparkles,
   Calendar,
   AlertTriangle
 } from 'lucide-react';
 import InteractiveCbctScanner from '../components/InteractiveCbctScanner';
+import Hero3DViewerCard from '../components/Hero3DViewerCard';
 
 const CbctPage = () => {
   // Update document title and meta description
@@ -157,59 +157,25 @@ const CbctPage = () => {
             <div className="w-full lg:w-1/2 flex justify-center lg:justify-end">
               <div className="w-full max-w-[560px] grid grid-cols-1 sm:grid-cols-2 gap-5 p-3 rounded-3xl bg-background-secondary/60 border border-border/60 shadow-xl">
                 
-                {/* [CBCT MACHINE PHOTOGRAPH] Placeholder */}
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#2E241E] via-[#211A16] to-[#171310] border border-[#3E322A]/80 flex flex-col justify-between p-6 text-left group">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono tracking-widest text-[#E8D8C4]/70 uppercase px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.08]">
-                      CLINIC SUITE
-                    </span>
-                    <Scan size={16} className="text-[#C5A880]" />
-                  </div>
+                {/* 1. Left Card: Interactive 3D CBCT Machine / Clinic Suite */}
+                <Hero3DViewerCard
+                  type="machine"
+                  badge="CLINIC SUITE • 3D"
+                  title="CBCT Imaging Unit"
+                  subtext="Interactive 3D model of in-clinic radiographic system"
+                  tagLeft="Thukral Clinic"
+                  tagRight="360° Machine"
+                />
 
-                  <div className="my-auto text-center py-6">
-                    <div className="w-16 h-16 rounded-full bg-[#FAF8F5]/[0.08] border border-[#FAF8F5]/20 flex items-center justify-center text-[#C5A880] mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
-                      <Layers size={28} />
-                    </div>
-                    <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#FAF8F5]/90 block mb-1">
-                      [CBCT MACHINE PHOTOGRAPH]
-                    </span>
-                    <p className="text-xs text-[#E8D8C4]/60 font-light max-w-[200px] mx-auto">
-                      In-clinic three-dimensional radiographic imaging system
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-[#E8D8C4]/70">
-                    <span className="font-serif italic text-xs text-[#FAF8F5]">Thukral Clinic</span>
-                    <span className="text-[10px] uppercase tracking-wider text-[#C5A880]">In-House Unit</span>
-                  </div>
-                </div>
-
-                {/* [3D DENTAL SCAN IMAGE] Placeholder */}
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#251E19] via-[#1D1612] to-[#120F0D] border border-[#3E322A]/80 flex flex-col justify-between p-6 text-left group">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono tracking-widest text-[#E8D8C4]/70 uppercase px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/[0.08]">
-                      3D RECONSTRUCTION
-                    </span>
-                    <Eye size={16} className="text-[#C5A880]" />
-                  </div>
-
-                  <div className="my-auto text-center py-6">
-                    <div className="w-16 h-16 rounded-full bg-[#FAF8F5]/[0.08] border border-[#FAF8F5]/20 flex items-center justify-center text-[#C5A880] mx-auto mb-4 group-hover:scale-105 transition-transform duration-300">
-                      <Activity size={28} />
-                    </div>
-                    <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#FAF8F5]/90 block mb-1">
-                      [3D DENTAL SCAN IMAGE]
-                    </span>
-                    <p className="text-xs text-[#E8D8C4]/60 font-light max-w-[200px] mx-auto">
-                      Volumetric anatomical reconstruction from multiple angles
-                    </p>
-                  </div>
-
-                  <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-[11px] text-[#E8D8C4]/70">
-                    <span className="font-serif italic text-xs text-[#FAF8F5]">Multi-Planar</span>
-                    <span className="text-[10px] uppercase tracking-wider text-[#C5A880]">Diagnostic View</span>
-                  </div>
-                </div>
+                {/* 2. Right Card: Interactive 3D Dental Scan */}
+                <Hero3DViewerCard
+                  type="scan"
+                  badge="3D RECONSTRUCTION"
+                  title="3D Dental Volume"
+                  subtext="Volumetric jawbone, roots & nerve pathway view"
+                  tagLeft="Multi-Planar"
+                  tagRight="360° Scan"
+                />
 
               </div>
             </div>
