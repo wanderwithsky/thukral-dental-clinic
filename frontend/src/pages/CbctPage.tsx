@@ -770,42 +770,34 @@ const CbctPage = () => {
 
                 return (
                   <div className="bg-background-secondary rounded-3xl border border-border p-3 sm:p-5 shadow-lg overflow-hidden">
-                    {/* Media frame */}
-                    <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black group">
+                    {/* Clean Media Frame with zero overlaid text badges */}
+                    <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black">
                       <img 
                         key={active.image}
                         src={active.image} 
                         alt={active.title}
                         className="w-full h-full object-cover object-center transition-all duration-700 ease-out animate-fadeIn"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
-
-                      {/* Header overlay badge */}
-                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                        <span className="text-[11px] font-mono tracking-widest uppercase text-white/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                          {active.category}
-                        </span>
-                        <span className="text-xs font-mono font-medium text-amber-300/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
-                          {active.indicationLabel}
-                        </span>
-                      </div>
-
-                      {/* Bottom overlay info */}
-                      <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 pointer-events-none">
-                        <span className="text-[10px] font-mono tracking-widest uppercase text-amber-200/90 block mb-1">
-                          CLINICAL INDICATION {active.num}
-                        </span>
-                        <h4 className="text-xl sm:text-2xl font-serif text-white font-medium mb-1.5">
-                          {active.title}
-                        </h4>
-                        <p className="text-xs sm:text-sm text-neutral-300 font-light max-w-xl line-clamp-2">
-                          {active.summary}
-                        </p>
-                      </div>
                     </div>
 
-                    {/* Explanatory text card below */}
-                    <div className="p-4 sm:p-6 border-t border-border/70 mt-2">
+                    {/* Dedicated Clinical Indication Caption Section immediately below the image */}
+                    <div className="p-4 sm:p-6 pb-2">
+                      <span className="text-[11px] font-mono tracking-widest uppercase text-primary font-semibold block mb-1">
+                        CLINICAL INDICATION {active.num}
+                      </span>
+                      <h4 className="text-xl sm:text-2xl font-serif text-text font-medium mb-2">
+                        {active.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
+                        {active.summary}
+                      </p>
+                    </div>
+
+                    {/* Subtle divider between Caption and Diagnostic Assessment Value */}
+                    <div className="mx-4 sm:mx-6 border-t border-border/70 my-2" />
+
+                    {/* Preserved Diagnostic Assessment Value Section */}
+                    <div className="p-4 sm:p-6 pt-2">
                       <span className="text-xs font-mono uppercase text-primary font-semibold block mb-1">
                         Diagnostic Assessment Value
                       </span>
