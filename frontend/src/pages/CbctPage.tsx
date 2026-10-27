@@ -4,8 +4,7 @@ import {
   ArrowRight, 
   ArrowDown, 
   ChevronDown, 
-  Layers, 
-  ShieldCheck, 
+  Layers,
   Scan, 
   Eye, 
   Activity, 
@@ -57,6 +56,15 @@ const CbctPage = () => {
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(prev => (prev === index ? null : index));
   };
+
+  // Section 1: Interactive Scan Workflow State (0 to 3)
+  const [activeWorkflowIndex, setActiveWorkflowIndex] = useState<number>(0);
+
+  // Section 2: Interactive Clinical Applications Explorer State (0 to 3)
+  const [activeAppIndex, setActiveAppIndex] = useState<number>(0);
+
+  // Section 3: Interactive 3D Imaging Multi-Planar Views State ('axial' | 'coronal' | 'sagittal' | 'volume')
+  const [activeSliceView, setActiveSliceView] = useState<'axial' | 'coronal' | 'sagittal' | 'volume'>('volume');
 
   const faqs = [
     {
@@ -391,9 +399,9 @@ const CbctPage = () => {
         </div>
       </section>
 
-      {/* 3. HOW CBCT WORKS (4-STEP PROCESS) */}
+      {/* 3. HOW CBCT WORKS (INTERACTIVE WORKFLOW) */}
       <section className="py-20 lg:py-28 bg-background-secondary border-b border-border">
-        <div className="page-container">
+        <div className="page-container max-w-7xl mx-auto">
           
           <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-primary mb-3 block">
@@ -407,51 +415,200 @@ const CbctPage = () => {
             </p>
           </div>
 
-          {/* Steps Timeline: Horizontal on Desktop, Vertical on Mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto relative">
+          {/* Interactive Editorial Two-Column Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {/* Step 01 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/80 shadow-sm flex flex-col justify-between relative group hover:border-primary/50 transition-colors">
-              <div>
-                <span className="text-3xl font-serif text-primary/70 font-semibold mb-4 block">01</span>
-                <h3 className="text-lg font-serif text-text mb-2">Clinical Assessment</h3>
-                <p className="text-sm text-text-muted font-light leading-relaxed">
-                  The dentist evaluates your concerns and determines whether additional imaging is necessary.
-                </p>
-              </div>
+            {/* Left Column: Interactive vertical numbered timeline */}
+            <div className="lg:col-span-5 flex flex-col space-y-4">
+              {[
+                {
+                  id: 0,
+                  num: "01",
+                  title: "Clinical Assessment",
+                  subtitle: "Diagnostic Evaluation",
+                  description: "The dentist evaluates your concerns, reviews existing records, and determines whether additional 3D imaging is clinically justified to address a specific diagnostic question.",
+                  image: "/images/cbct-workflow-assessment.jpg",
+                  tag: "CONSULTATION & INDICATION"
+                },
+                {
+                  id: 1,
+                  num: "02",
+                  title: "Patient Positioning",
+                  subtitle: "Precision Alignment",
+                  description: "You are comfortably positioned with chin and forehead rests to ensure steady alignment. You may be asked to remove jewellery or metal objects that could interfere with the scan.",
+                  image: "/images/cbct-workflow-positioning.jpg",
+                  tag: "COMFORT & STABILIZATION"
+                },
+                {
+                  id: 2,
+                  num: "03",
+                  title: "Image Capture",
+                  subtitle: "Single Rotational Sweep",
+                  description: "The C-arm gantry rotates smoothly around the head in a single continuous sweep of 10–30 seconds, capturing multiple low-dose projection images while you remain relaxed and still.",
+                  image: "/images/cbct-workflow-capture.jpg",
+                  tag: "FAST & NON-INVASIVE"
+                },
+                {
+                  id: 3,
+                  num: "04",
+                  title: "Image Reconstruction",
+                  subtitle: "Volumetric Multi-Planar Views",
+                  description: "Specialized algorithmic software reconstructs raw X-ray projections into sub-millimeter axial, coronal, sagittal, and 3D volumetric views for precise clinical examination.",
+                  image: "/images/cbct-app-implant.jpg",
+                  tag: "3D MULTI-PLANAR VISUALIZATION"
+                }
+              ].map((step, idx) => {
+                const isActive = activeWorkflowIndex === idx;
+                return (
+                  <button
+                    key={step.id}
+                    type="button"
+                    onClick={() => setActiveWorkflowIndex(idx)}
+                    className={`w-full text-left p-5 sm:p-6 rounded-2xl transition-all duration-300 relative border ${
+                      isActive 
+                        ? 'bg-background border-primary/40 shadow-md shadow-primary/5' 
+                        : 'bg-background/40 hover:bg-background/80 border-border/60 hover:border-border'
+                    }`}
+                  >
+                    <div className="flex items-start gap-4 sm:gap-5">
+                      <span className={`text-2xl sm:text-3xl font-serif font-light transition-colors ${
+                        isActive ? 'text-primary font-medium' : 'text-text-muted/60'
+                      }`}>
+                        {step.num}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                          <h3 className={`text-base sm:text-lg font-serif transition-colors ${
+                            isActive ? 'text-text font-medium' : 'text-text/80'
+                          }`}>
+                            {step.title}
+                          </h3>
+                          {isActive && (
+                            <span className="text-[10px] font-mono tracking-widest uppercase text-primary bg-primary/10 px-2 py-0.5 rounded-full shrink-0">
+                              Active Stage
+                            </span>
+                          )}
+                        </div>
+                        <p className={`text-xs sm:text-sm text-text-muted font-light mt-1.5 leading-relaxed transition-all duration-300 ${
+                          isActive ? 'opacity-100 max-h-32' : 'opacity-70 line-clamp-2'
+                        }`}>
+                          {step.description}
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Step 02 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/80 shadow-sm flex flex-col justify-between relative group hover:border-primary/50 transition-colors">
-              <div>
-                <span className="text-3xl font-serif text-primary/70 font-semibold mb-4 block">02</span>
-                <h3 className="text-lg font-serif text-text mb-2">Patient Positioning</h3>
-                <p className="text-sm text-text-muted font-light leading-relaxed">
-                  You are positioned according to the scanner's requirements. You may be asked to remove jewellery or other metal objects that could interfere with the image.
-                </p>
-              </div>
-            </div>
+            {/* Right Column: Large interactive visual showcase */}
+            <div className="lg:col-span-7">
+              {(() => {
+                const steps = [
+                  {
+                    num: "01",
+                    title: "Clinical Assessment",
+                    subtitle: "Initial Examination & Diagnostic Indication",
+                    description: "The dentist evaluates your concerns and determines whether additional imaging is necessary.",
+                    image: "/images/cbct-workflow-assessment.jpg",
+                    tag: "STEP 01 &middot; CLINICAL INDICATION",
+                    badge: "Consultation Stage"
+                  },
+                  {
+                    num: "02",
+                    title: "Patient Positioning",
+                    subtitle: "Comfortable Alignment & Scout View Preparation",
+                    description: "You are positioned according to the scanner's requirements. You may be asked to remove jewellery or other metal objects that could interfere with the image.",
+                    image: "/images/cbct-workflow-positioning.jpg",
+                    tag: "STEP 02 &middot; PATIENT PREPARATION",
+                    badge: "Positioning Suite"
+                  },
+                  {
+                    num: "03",
+                    title: "Image Capture",
+                    subtitle: "Single Rotational Sweep Around the Head",
+                    description: "The scanner rotates around the relevant area and captures multiple X-ray projections. Remaining still helps reduce image blurring.",
+                    image: "/images/cbct-workflow-capture.jpg",
+                    tag: "STEP 03 &middot; ACQUISITION PHASE",
+                    badge: "Rotational Acquisition"
+                  },
+                  {
+                    num: "04",
+                    title: "Image Reconstruction",
+                    subtitle: "Algorithmic 3D Multi-Planar Volumetric Processing",
+                    description: "Software reconstructs the captured information into a three-dimensional view that the dentist can examine for the clinical question being investigated.",
+                    image: "/images/cbct-app-implant.jpg",
+                    tag: "STEP 04 &middot; COMPUTED RECONSTRUCTION",
+                    badge: "Volumetric Synthesis"
+                  }
+                ];
+                const active = steps[activeWorkflowIndex];
 
-            {/* Step 03 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/80 shadow-sm flex flex-col justify-between relative group hover:border-primary/50 transition-colors">
-              <div>
-                <span className="text-3xl font-serif text-primary/70 font-semibold mb-4 block">03</span>
-                <h3 className="text-lg font-serif text-text mb-2">Image Capture</h3>
-                <p className="text-sm text-text-muted font-light leading-relaxed">
-                  The scanner rotates around the relevant area and captures multiple X-ray projections. Remaining still helps reduce image blurring.
-                </p>
-              </div>
-            </div>
+                return (
+                  <div className="bg-background rounded-3xl border border-border p-3 sm:p-5 shadow-xl overflow-hidden transition-all duration-500">
+                    {/* Media Frame */}
+                    <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-neutral-900 group">
+                      <img 
+                        key={active.image}
+                        src={active.image} 
+                        alt={active.title}
+                        className="w-full h-full object-cover object-center transition-all duration-700 ease-out animate-fadeIn"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
 
-            {/* Step 04 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/80 shadow-sm flex flex-col justify-between relative group hover:border-primary/50 transition-colors">
-              <div>
-                <span className="text-3xl font-serif text-primary/70 font-semibold mb-4 block">04</span>
-                <h3 className="text-lg font-serif text-text mb-2">Image Reconstruction</h3>
-                <p className="text-sm text-text-muted font-light leading-relaxed">
-                  Software reconstructs the captured information into a three-dimensional view that the dentist can examine for the clinical question being investigated.
-                </p>
-              </div>
+                      {/* Header overlay badge */}
+                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <span className="text-[11px] font-mono tracking-widest uppercase text-white/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                          {active.badge}
+                        </span>
+                        <span className="text-xs font-mono font-medium text-amber-300/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                          STAGE {active.num} / 04
+                        </span>
+                      </div>
+
+                      {/* Bottom overlay info */}
+                      <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 pointer-events-none">
+                        <div className="inline-block text-[10px] font-mono tracking-widest uppercase text-amber-200/90 mb-1">
+                          {active.tag}
+                        </div>
+                        <h4 className="text-xl sm:text-2xl font-serif text-white font-medium mb-1">
+                          {active.title}
+                        </h4>
+                        <p className="text-xs sm:text-sm text-neutral-300 font-light max-w-xl line-clamp-2">
+                          {active.subtitle}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Stage Details Strip below media */}
+                    <div className="p-4 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-border/60 mt-2">
+                      <div>
+                        <span className="text-xs font-mono uppercase text-primary font-semibold block mb-0.5">
+                          Clinical Purpose
+                        </span>
+                        <p className="text-xs sm:text-sm text-text font-light">
+                          {active.description}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 shrink-0">
+                        {steps.map((_, i) => (
+                          <button
+                            key={i}
+                            type="button"
+                            onClick={() => setActiveWorkflowIndex(i)}
+                            aria-label={`Go to stage ${i + 1}`}
+                            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                              activeWorkflowIndex === i 
+                                ? 'bg-primary w-8' 
+                                : 'bg-border hover:bg-primary/40'
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
 
           </div>
@@ -459,9 +616,9 @@ const CbctPage = () => {
         </div>
       </section>
 
-      {/* 4. WHEN CBCT MAY BE RECOMMENDED */}
+      {/* 4. WHEN CBCT MAY BE RECOMMENDED (INTERACTIVE CLINICAL APPLICATIONS EXPLORER) */}
       <section className="py-20 lg:py-28 bg-background border-b border-border">
-        <div className="page-container max-w-6xl mx-auto">
+        <div className="page-container max-w-7xl mx-auto">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-primary mb-3 block">
@@ -475,146 +632,409 @@ const CbctPage = () => {
             </p>
           </div>
 
-          {/* Four Content Blocks */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Asymmetric Interactive Explorer */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Block 1: Implants */}
-            <div className="p-8 rounded-2xl bg-background-secondary border border-border/70 hover:border-primary/40 transition-colors">
-              <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 block">
-                RESTORATIVE &middot; SURGICAL
-              </span>
-              <h3 className="text-2xl font-serif text-text mb-3">Dental Implant Planning</h3>
-              <p className="text-sm sm:text-base text-text-muted font-light leading-relaxed">
-                Three-dimensional imaging can help assess bone dimensions and the anatomical structures relevant to implant planning.
-              </p>
+            {/* Left side: Interactive clinical topics list */}
+            <div className="lg:col-span-5 flex flex-col divide-y divide-border/80 border-y border-border/80">
+              {[
+                {
+                  id: 0,
+                  num: "01",
+                  title: "Dental Implant Planning",
+                  category: "RESTORATIVE &middot; SURGICAL",
+                  summary: "Three-dimensional imaging can help assess bone dimensions and the anatomical structures relevant to implant planning.",
+                  details: "Assesses bone height, cortical thickness, bone density indicators, and precise spatial distance to vital anatomical structures such as the inferior alveolar nerve canal or maxillary sinus floor before surgical placement.",
+                  image: "/images/cbct-app-implant.jpg",
+                  indicationLabel: "Implant Site Assessment"
+                },
+                {
+                  id: 1,
+                  num: "02",
+                  title: "Impacted Teeth",
+                  category: "ORAL SURGERY &middot; WISDOM TEETH",
+                  summary: "CBCT may help show the position and orientation of impacted teeth, including their relationship to nearby structures, when additional information is needed.",
+                  details: "Reveals exact 3D tooth angulation, root curvature morphology, follicular sac expansion, and close proximities to neighbouring tooth roots or neurovascular bundles.",
+                  image: "/images/cbct-app-impacted.jpg",
+                  indicationLabel: "Spatial & Nerve Proximity"
+                },
+                {
+                  id: 2,
+                  num: "03",
+                  title: "Complex Root Canal Assessment",
+                  category: "ENDODONTICS",
+                  summary: "In selected endodontic cases, CBCT may help evaluate complex root anatomy or investigate findings that remain unclear with conventional imaging.",
+                  details: "Helps identify hidden root canals (such as MB2), canal calcifications, complex apical curvatures, internal or external root resorption, and persistent periapical lesions undetectable on 2D periapical films.",
+                  image: "/images/cbct-app-endodontic.jpg",
+                  indicationLabel: "Internal Canal Morphology"
+                },
+                {
+                  id: 3,
+                  num: "04",
+                  title: "Selected Orthodontic and Jaw Assessments",
+                  category: "ORTHODONTICS &middot; SKELETAL",
+                  summary: "CBCT may be useful in selected cases involving complex tooth positioning, jaw anatomy or surgical orthodontic planning when three-dimensional information can influence clinical decisions.",
+                  details: "Provides 3D cephalometric analysis, upper airway volume evaluation, temporomandibular joint (TMJ) bony morphology, and skeletal asymmetry analysis for surgical-orthodontic collaboration.",
+                  image: "/images/cbct-app-ortho.jpg",
+                  indicationLabel: "Airway & Skeletal Cephalometrics"
+                }
+              ].map((topic, idx) => {
+                const isActive = activeAppIndex === idx;
+                return (
+                  <button
+                    key={topic.id}
+                    type="button"
+                    onClick={() => setActiveAppIndex(idx)}
+                    className={`text-left py-6 px-4 transition-all duration-300 relative group flex items-start justify-between gap-4 ${
+                      isActive 
+                        ? 'bg-background-secondary/70 -mx-2 px-6 rounded-xl' 
+                        : 'hover:bg-background-secondary/40'
+                    }`}
+                  >
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-1.5">
+                        <span className={`text-xs font-mono font-bold tracking-widest ${
+                          isActive ? 'text-primary' : 'text-text-muted/60'
+                        }`}>
+                          {topic.num}
+                        </span>
+                        <span className="text-[10px] font-semibold tracking-widest uppercase text-text-muted/80">
+                          {topic.category}
+                        </span>
+                      </div>
+                      <h3 className={`text-lg sm:text-xl font-serif transition-colors ${
+                        isActive ? 'text-primary font-medium' : 'text-text group-hover:text-primary'
+                      }`}>
+                        {topic.title}
+                      </h3>
+                      <p className={`text-xs sm:text-sm text-text-muted font-light mt-1.5 leading-relaxed transition-all duration-300 ${
+                        isActive ? 'opacity-100 max-h-24' : 'opacity-60 line-clamp-1'
+                      }`}>
+                        {topic.summary}
+                      </p>
+                    </div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border transition-all mt-1 ${
+                      isActive 
+                        ? 'bg-primary text-white border-primary rotate-90' 
+                        : 'border-border text-text-muted group-hover:border-primary/50'
+                    }`}>
+                      <ArrowRight size={14} />
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Block 2: Impacted Teeth */}
-            <div className="p-8 rounded-2xl bg-background-secondary border border-border/70 hover:border-primary/40 transition-colors">
-              <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 block">
-                ORAL SURGERY &middot; WISDOM TEETH
-              </span>
-              <h3 className="text-2xl font-serif text-text mb-3">Impacted Teeth</h3>
-              <p className="text-sm sm:text-base text-text-muted font-light leading-relaxed">
-                CBCT may help show the position and orientation of impacted teeth, including their relationship to nearby structures, when additional information is needed.
-              </p>
-            </div>
+            {/* Right side: Large clinical image viewer */}
+            <div className="lg:col-span-7">
+              {(() => {
+                const applications = [
+                  {
+                    num: "01",
+                    title: "Dental Implant Planning",
+                    category: "RESTORATIVE & SURGICAL",
+                    summary: "Three-dimensional imaging can help assess bone dimensions and the anatomical structures relevant to implant planning.",
+                    details: "Assesses bone height, cortical thickness, bone density indicators, and precise spatial distance to vital anatomical structures such as the inferior alveolar nerve canal or maxillary sinus floor before surgical placement.",
+                    image: "/images/cbct-app-implant.jpg",
+                    indicationLabel: "Implant Site Assessment"
+                  },
+                  {
+                    num: "02",
+                    title: "Impacted Teeth",
+                    category: "ORAL SURGERY & WISDOM TEETH",
+                    summary: "CBCT may help show the position and orientation of impacted teeth, including their relationship to nearby structures, when additional information is needed.",
+                    details: "Reveals exact 3D tooth angulation, root curvature morphology, follicular sac expansion, and close proximities to neighbouring tooth roots or neurovascular bundles.",
+                    image: "/images/cbct-app-impacted.jpg",
+                    indicationLabel: "Spatial & Nerve Proximity"
+                  },
+                  {
+                    num: "03",
+                    title: "Complex Root Canal Assessment",
+                    category: "ENDODONTIC DIAGNOSTICS",
+                    summary: "In selected endodontic cases, CBCT may help evaluate complex root anatomy or investigate findings that remain unclear with conventional imaging.",
+                    details: "Helps identify hidden root canals (such as MB2), canal calcifications, complex apical curvatures, internal or external root resorption, and persistent periapical lesions undetectable on 2D periapical films.",
+                    image: "/images/cbct-app-endodontic.jpg",
+                    indicationLabel: "Internal Canal Morphology"
+                  },
+                  {
+                    num: "04",
+                    title: "Selected Orthodontic and Jaw Assessments",
+                    category: "ORTHODONTICS & SKELETAL",
+                    summary: "CBCT may be useful in selected cases involving complex tooth positioning, jaw anatomy or surgical orthodontic planning when three-dimensional information can influence clinical decisions.",
+                    details: "Provides 3D cephalometric analysis, upper airway volume evaluation, temporomandibular joint (TMJ) bony morphology, and skeletal asymmetry analysis for surgical-orthodontic collaboration.",
+                    image: "/images/cbct-app-ortho.jpg",
+                    indicationLabel: "Airway & Skeletal Cephalometrics"
+                  }
+                ];
+                const active = applications[activeAppIndex];
 
-            {/* Block 3: Complex Root Canals */}
-            <div className="p-8 rounded-2xl bg-background-secondary border border-border/70 hover:border-primary/40 transition-colors">
-              <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 block">
-                ENDODONTICS
-              </span>
-              <h3 className="text-2xl font-serif text-text mb-3">Complex Root Canal Assessment</h3>
-              <p className="text-sm sm:text-base text-text-muted font-light leading-relaxed">
-                In selected endodontic cases, CBCT may help evaluate complex root anatomy or investigate findings that remain unclear with conventional imaging.
-              </p>
-            </div>
+                return (
+                  <div className="bg-background-secondary rounded-3xl border border-border p-3 sm:p-5 shadow-lg overflow-hidden">
+                    {/* Media frame */}
+                    <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black group">
+                      <img 
+                        key={active.image}
+                        src={active.image} 
+                        alt={active.title}
+                        className="w-full h-full object-cover object-center transition-all duration-700 ease-out animate-fadeIn"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
 
-            {/* Block 4: Orthodontics & Jaw */}
-            <div className="p-8 rounded-2xl bg-background-secondary border border-border/70 hover:border-primary/40 transition-colors">
-              <span className="text-xs font-semibold uppercase tracking-widest text-primary mb-2 block">
-                ORTHODONTICS &middot; SKELETAL
-              </span>
-              <h3 className="text-2xl font-serif text-text mb-3">Selected Orthodontic and Jaw Assessments</h3>
-              <p className="text-sm sm:text-base text-text-muted font-light leading-relaxed">
-                CBCT may be useful in selected cases involving complex tooth positioning, jaw anatomy or surgical orthodontic planning when three-dimensional information can influence clinical decisions.
-              </p>
+                      {/* Header overlay badge */}
+                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                        <span className="text-[11px] font-mono tracking-widest uppercase text-white/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                          {active.category}
+                        </span>
+                        <span className="text-xs font-mono font-medium text-amber-300/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                          {active.indicationLabel}
+                        </span>
+                      </div>
+
+                      {/* Bottom overlay info */}
+                      <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 pointer-events-none">
+                        <span className="text-[10px] font-mono tracking-widest uppercase text-amber-200/90 block mb-1">
+                          CLINICAL INDICATION {active.num}
+                        </span>
+                        <h4 className="text-xl sm:text-2xl font-serif text-white font-medium mb-1.5">
+                          {active.title}
+                        </h4>
+                        <p className="text-xs sm:text-sm text-neutral-300 font-light max-w-xl line-clamp-2">
+                          {active.summary}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Explanatory text card below */}
+                    <div className="p-4 sm:p-6 border-t border-border/70 mt-2">
+                      <span className="text-xs font-mono uppercase text-primary font-semibold block mb-1">
+                        Diagnostic Assessment Value
+                      </span>
+                      <p className="text-xs sm:text-sm text-text font-light leading-relaxed">
+                        {active.details}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
 
           </div>
 
-          {/* Restrained Supporting Note */}
-          <div className="mt-12 p-5 rounded-xl bg-background border border-border/70 max-w-2xl mx-auto text-center">
+          {/* Understated Clinical Caveat Note (No Card Box) */}
+          <div className="mt-12 text-center max-w-3xl mx-auto pt-6 border-t border-border/60">
             <p className="text-xs sm:text-sm text-text-muted font-light italic">
-              CBCT is not required for every patient or every treatment. Your dentist will determine whether it is appropriate for your individual case.
+              <strong>Clinical Guidance:</strong> CBCT is not required for every patient or every treatment. Your dentist will determine whether it is appropriate for your individual case based strictly on clinical necessity.
             </p>
           </div>
 
         </div>
       </section>
 
-      {/* 5. BENEFITS OF CBCT IMAGING */}
+      {/* 5. HOW 3D IMAGING CAN SUPPORT TREATMENT PLANNING (INTERACTIVE 3D MULTI-PLANAR EXPLORER) */}
       <section className="py-20 lg:py-28 bg-background-secondary border-b border-border">
-        <div className="page-container max-w-6xl mx-auto">
+        <div className="page-container max-w-7xl mx-auto">
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-primary mb-3 block">
-              DIAGNOSTIC VALUE
+              DIAGNOSTIC VALUE &middot; MULTI-PLANAR RECONSTRUCTION
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-text mb-4">
               How 3D Imaging Can Support Treatment Planning.
             </h2>
             <p className="text-base text-text-muted font-light">
-              Clear structural insights to assist clinical discussions and treatment preparation.
+              Explore how raw cone-beam projections are reconstructed into standardized anatomical views and spatial volumetric models.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Interactive Multi-Planar View Selector + Benefits Column */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            {/* Benefit 1 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/60">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                <Layers size={20} />
+            {/* Left Column: Interactive View Display */}
+            <div className="lg:col-span-7 flex flex-col space-y-4">
+              
+              {/* View Selector Tabs */}
+              <div className="flex flex-wrap items-center gap-2 p-1.5 bg-background rounded-2xl border border-border w-fit">
+                {[
+                  { key: 'volume', label: '3D Volume View' },
+                  { key: 'axial', label: 'Axial View (Horizontal)' },
+                  { key: 'coronal', label: 'Coronal View (Frontal)' },
+                  { key: 'sagittal', label: 'Sagittal View (Profile)' }
+                ].map(tab => (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    onClick={() => setActiveSliceView(tab.key as any)}
+                    className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-serif transition-all duration-300 ${
+                      activeSliceView === tab.key 
+                        ? 'bg-primary text-white shadow-sm font-medium' 
+                        : 'text-text-muted hover:text-text hover:bg-background-secondary'
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
-              <h3 className="text-lg font-serif text-text mb-2">Three-Dimensional Perspective</h3>
-              <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
-                Helps clinicians examine relevant anatomy from multiple directions without planar distortion.
-              </p>
+
+              {/* Dynamic View Frame */}
+              <div className="bg-background rounded-3xl border border-border p-3 sm:p-5 shadow-lg overflow-hidden">
+                {(() => {
+                  const viewDetails = {
+                    volume: {
+                      title: "3D Volumetric Composite Reconstruction",
+                      plane: "Full Maxillofacial Volume",
+                      description: "A complete three-dimensional representation that visualizes spatial relationships, bony contours, tooth angulations, and external anatomical landmarks in their authentic anatomical context.",
+                      image: "/images/cbct-app-ortho.jpg",
+                      indicator: "Spatial Volumetric View"
+                    },
+                    axial: {
+                      title: "Axial View (Horizontal Plane)",
+                      plane: "Inferior / Superior Cross-Section",
+                      description: "Transverse slices slicing horizontally across the dental arch. Crucial for assessing dental arch curvature, buccal and lingual cortical plate thickness, and root positions relative to adjacent teeth.",
+                      image: "/images/cbct-slice-axial.jpg",
+                      indicator: "Transverse / Horizontal Slice"
+                    },
+                    coronal: {
+                      title: "Coronal View (Frontal Plane)",
+                      plane: "Anterior / Posterior Cross-Section",
+                      description: "Vertical slices viewed from the front, revealing the maxillary sinuses, nasal cavity, floor of the nose, and the vertical height of alveolar bone above root apexes.",
+                      image: "/images/cbct-slice-coronal.jpg",
+                      indicator: "Frontal / Coronal Slice"
+                    },
+                    sagittal: {
+                      title: "Sagittal View (Profile Plane)",
+                      plane: "Lateral / Cross-Sectional Ridge View",
+                      description: "Side-profile cross-sections displaying the alveolar ridge width, anterior incisor inclination, facial-lingual bone contour, and root canal path from crown to apex.",
+                      image: "/images/cbct-slice-sagittal.jpg",
+                      indicator: "Profile / Sagittal Slice"
+                    }
+                  }[activeSliceView];
+
+                  return (
+                    <div>
+                      <div className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-black group">
+                        <img 
+                          key={viewDetails.image}
+                          src={viewDetails.image} 
+                          alt={viewDetails.title}
+                          className="w-full h-full object-cover object-center transition-all duration-700 ease-out animate-fadeIn"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/30 pointer-events-none" />
+
+                        {/* Top Badges */}
+                        <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                          <span className="text-[11px] font-mono tracking-widest uppercase text-white/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                            {viewDetails.indicator}
+                          </span>
+                          <span className="text-xs font-mono font-medium text-amber-300/90 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                            {viewDetails.plane}
+                          </span>
+                        </div>
+
+                        {/* Bottom Overlay Info */}
+                        <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 pointer-events-none">
+                          <h4 className="text-xl sm:text-2xl font-serif text-white font-medium mb-1">
+                            {viewDetails.title}
+                          </h4>
+                          <p className="text-xs sm:text-sm text-neutral-300 font-light max-w-xl">
+                            {viewDetails.plane}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="p-4 sm:p-6 border-t border-border/70 mt-2">
+                        <span className="text-xs font-mono uppercase text-primary font-semibold block mb-1">
+                          Diagnostic Purpose
+                        </span>
+                        <p className="text-xs sm:text-sm text-text font-light leading-relaxed">
+                          {viewDetails.description}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+
             </div>
 
-            {/* Benefit 2 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/60">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                <Eye size={20} />
+            {/* Right Column: Key Clinical Benefits Editorial List (No Repetitive Card Grid) */}
+            <div className="lg:col-span-5 flex flex-col space-y-6">
+              <div>
+                <span className="text-xs font-semibold tracking-widest uppercase text-primary mb-2 block">
+                  CLINICAL ADVANTAGES
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-serif text-text mb-4">
+                  Why 3D Reconstruction Matters
+                </h3>
+                <p className="text-sm text-text-muted font-light leading-relaxed mb-6">
+                  Unlike traditional two-dimensional films that superimpose complex anatomy, multi-planar CBCT imaging allows clinicians to isolate and evaluate specific structures without distortion.
+                </p>
               </div>
-              <h3 className="text-lg font-serif text-text mb-2">Anatomical Detail</h3>
-              <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
-                Can show tooth position, bone dimensions and selected surrounding structures more clearly than a two-dimensional image.
-              </p>
-            </div>
 
-            {/* Benefit 3 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/60">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                <ShieldCheck size={20} />
+              {/* Minimalist Editorial Benefits List */}
+              <div className="space-y-4 divide-y divide-border/60 border-t border-b border-border/60 py-2">
+                
+                <div className="pt-3">
+                  <h4 className="text-base font-serif text-text font-medium mb-1 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Three-Dimensional Perspective
+                  </h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed pl-3.5">
+                    Helps clinicians inspect relevant anatomy from multiple directions without planar distortion or overlapping structural artefacts.
+                  </p>
+                </div>
+
+                <div className="pt-3">
+                  <h4 className="text-base font-serif text-text font-medium mb-1 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Anatomical Detail
+                  </h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed pl-3.5">
+                    May reveal useful information about tooth position, bone dimensions, density indicators, and selected surrounding structures.
+                  </p>
+                </div>
+
+                <div className="pt-3">
+                  <h4 className="text-base font-serif text-text font-medium mb-1 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Planning Support
+                  </h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed pl-3.5">
+                    Can support assessment and planning in selected complex surgical, implant, or orthodontic procedures.
+                  </p>
+                </div>
+
+                <div className="pt-3">
+                  <h4 className="text-base font-serif text-text font-medium mb-1 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Targeted Assessment
+                  </h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed pl-3.5">
+                    May provide additional information when conventional imaging does not sufficiently answer the specific clinical question.
+                  </p>
+                </div>
+
+                <div className="pt-3">
+                  <h4 className="text-base font-serif text-text font-medium mb-1 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    Digital Review
+                  </h4>
+                  <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed pl-3.5">
+                    Allows clinicians to examine reconstructed multi-planar views and discuss relevant clinical findings collaboratively with patients.
+                  </p>
+                </div>
+
               </div>
-              <h3 className="text-lg font-serif text-text mb-2">Planning Support</h3>
-              <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
-                May help clinicians assess anatomical considerations before certain surgical or complex dental procedures.
-              </p>
-            </div>
 
-            {/* Benefit 4 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/60">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                <Scan size={20} />
+              {/* Restrained Philosophy Quote */}
+              <div className="p-4 rounded-xl bg-background border border-border/80">
+                <p className="text-xs text-text font-serif italic mb-1 leading-relaxed">
+                  “Evidence-based imaging focused strictly on patient safety, diagnostic necessity, and clear clinical outcomes.”
+                </p>
+                <span className="text-[10px] text-text-muted uppercase tracking-widest font-mono">
+                  Thukral Dental Philosophy
+                </span>
               </div>
-              <h3 className="text-lg font-serif text-text mb-2">Targeted Assessment</h3>
-              <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
-                Can provide additional information when conventional imaging does not adequately answer the clinical question.
-              </p>
-            </div>
 
-            {/* Benefit 5 */}
-            <div className="p-6 rounded-2xl bg-background border border-border/60">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4">
-                <Activity size={20} />
-              </div>
-              <h3 className="text-lg font-serif text-text mb-2">Digital Review</h3>
-              <p className="text-xs sm:text-sm text-text-muted font-light leading-relaxed">
-                Reconstructed images can be examined from different views and angles for collaborative clinical planning.
-              </p>
-            </div>
-
-            {/* Context Note */}
-            <div className="p-6 rounded-2xl bg-primary/5 border border-primary/20 flex flex-col justify-center">
-              <p className="text-xs text-text font-serif italic mb-2 leading-relaxed">
-                “Evidence-based imaging focused strictly on patient safety and diagnostic necessity.”
-              </p>
-              <span className="text-[10px] text-text-muted uppercase tracking-widest font-semibold">
-                Thukral Dental Philosophy
-              </span>
             </div>
 
           </div>
