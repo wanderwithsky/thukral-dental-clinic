@@ -21,7 +21,7 @@ const LateralCephPage: React.FC = () => {
   // SEO Title and Meta Description
   useEffect(() => {
     const originalTitle = document.title;
-    document.title = "Lateral Cephalogram in Varanasi | Thukral Dental & Aesthetic Clinic";
+    document.title = "Lateral Cephalogram in Varanasi | Thukral Dental Clinic";
 
     let metaDescription = document.querySelector('meta[name="description"]');
     const prevDescription = metaDescription ? metaDescription.getAttribute('content') : '';
@@ -33,7 +33,7 @@ const LateralCephPage: React.FC = () => {
     }
     metaDescription.setAttribute(
       'content',
-      'Learn about Lateral Cephalogram imaging at Thukral Dental & Aesthetic Clinic in Varanasi. Standardised lateral cranial radiography for orthodontic planning, facial profile analysis, and jaw relationship evaluation.'
+      'Learn about Lateral Cephalogram imaging at Thukral Dental Clinic in Varanasi. Standardised lateral cranial radiography for orthodontic planning, facial profile analysis, and jaw relationship evaluation.'
     );
 
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
@@ -86,7 +86,7 @@ const LateralCephPage: React.FC = () => {
       num: '03',
       title: 'Facial Profile Analysis',
       desc: 'Provides a clear profile contour view of the soft-tissue silhouette—including nose projection, nasolabial angle, lip competence, and chin prominence.',
-      tag: 'Aesthetic Profile'
+      tag: 'Facial Profile'
     },
     {
       num: '04',
@@ -146,7 +146,7 @@ const LateralCephPage: React.FC = () => {
     },
     {
       title: 'Facial Assessment',
-      desc: 'Assesses how tooth alignment and bite correction will directly enhance facial aesthetics, lip support, and smiling harmony.'
+      desc: 'Assesses how tooth alignment and bite correction will directly enhance facial harmony, lip support, and smiling balance.'
     },
     {
       title: 'Progress Comparison',
@@ -627,7 +627,7 @@ const LateralCephPage: React.FC = () => {
 
             <div className="space-y-4 text-sm sm:text-base text-text-muted font-light leading-relaxed">
               <p>
-                A Lateral Cephalogram is <strong>not required for routine dental visits or every minor aesthetic alignment</strong>. It is selectively prescribed by an orthodontist or oral surgeon when:
+                A Lateral Cephalogram is <strong>not required for routine dental visits or every minor tooth alignment</strong>. It is selectively prescribed by an orthodontist or oral surgeon when:
               </p>
               <ul className="list-disc pl-5 space-y-2">
                 <li>

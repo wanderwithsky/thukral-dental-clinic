@@ -14,7 +14,7 @@ const environmentImages: GalleryImage[] = [
   {
     id: 'env-1',
     url: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664622/01.webp',
-    alt: 'Thukral Dental & Aesthetic Clinic - State-of-the-art modern clinical treatment operatory',
+    alt: 'Thukral Dental Clinic - State-of-the-art modern clinical treatment operatory',
     title: 'Modern Clinical Operatory',
     orientation: 'landscape',
     aspectRatio: '3:2',
@@ -23,7 +23,7 @@ const environmentImages: GalleryImage[] = [
   {
     id: 'env-c1',
     url: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664868/52688528_923426558006652_435400656069591040_n.jpg',
-    alt: 'Thukral Dental & Aesthetic Clinic - Collaborative chairside clinical procedure session',
+    alt: 'Thukral Dental Clinic - Collaborative chairside clinical procedure session',
     title: 'Clinical Operatory Session',
     orientation: 'portrait',
     aspectRatio: '3:4',
@@ -32,7 +32,7 @@ const environmentImages: GalleryImage[] = [
   {
     id: 'env-c2',
     url: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664920/52720428_923426484673326_9035049136948248576_n.jpg',
-    alt: 'Thukral Dental & Aesthetic Clinic - Dedicated chairside dental treatment and clinical precision',
+    alt: 'Thukral Dental Clinic - Dedicated chairside dental treatment and clinical precision',
     title: 'Chairside Procedure Precision',
     orientation: 'portrait',
     aspectRatio: '3:4',
@@ -41,7 +41,7 @@ const environmentImages: GalleryImage[] = [
   {
     id: 'env-c3',
     url: '/images/gallery/specialist-clinical-focus.jpg',
-    alt: 'Thukral Dental & Aesthetic Clinic - Focused dental specialist performing procedure under clinical illumination',
+    alt: 'Thukral Dental Clinic - Focused dental specialist performing procedure under clinical illumination',
     title: 'Specialist Clinical Focus',
     orientation: 'portrait',
     aspectRatio: '3:4',
@@ -50,7 +50,7 @@ const environmentImages: GalleryImage[] = [
   {
     id: 'env-c4',
     url: '/images/gallery/treatment-suite.jpg',
-    alt: 'Thukral Dental & Aesthetic Clinic - Comprehensive patient care and advanced operatory setting',
+    alt: 'Thukral Dental Clinic - Comprehensive patient care and advanced operatory setting',
     title: 'Comprehensive Treatment Suite',
     orientation: 'portrait',
     aspectRatio: '3:4',
@@ -59,7 +59,7 @@ const environmentImages: GalleryImage[] = [
   {
     id: 'env-7',
     url: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792665110/489457755_2626714481011176_5338931340936037231_n.jpg',
-    alt: 'Thukral Dental & Aesthetic Clinic - Clinical exterior and welcoming practice ambiance in Varanasi',
+    alt: 'Thukral Dental Clinic - Clinical exterior and welcoming practice ambiance in Varanasi',
     title: 'Practice Ambiance & Architecture',
     orientation: 'landscape',
     aspectRatio: '3:2',

@@ -92,6 +92,6 @@ export const EDUCATION_CATEGORIES = [
   'Braces & Orthodontics',
   'Dental Technology',
   'Clear Aligners',
-  'Smile Aesthetics',
+  'Smile Design',
   'Dental FAQs',
 ] as const;

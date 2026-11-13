@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 const Terms = () => {
   useEffect(() => {
-    document.title = "Terms & Conditions | Thukral Dental & Aesthetic Clinic";
+    document.title = "Terms & Conditions | Thukral Dental Clinic";
     
     // Manage meta description
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -13,7 +13,7 @@ const Terms = () => {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Terms & Conditions for accessing and using the Thukral Dental & Aesthetic Clinic website.');
+    metaDescription.setAttribute('content', 'Terms & Conditions for accessing and using the Thukral Dental Clinic website.');
     
     window.scrollTo(0, 0);
   }, []);
@@ -30,7 +30,7 @@ const Terms = () => {
         
         <div className="space-y-12 text-base md:text-lg text-text-muted leading-relaxed font-light">
           <p className="text-lg md:text-xl text-text font-serif italic mb-12">
-            By accessing and using the Thukral Dental & Aesthetic Clinic website, you agree to the following terms and conditions.
+            By accessing and using the Thukral Dental Clinic website, you agree to the following terms and conditions.
           </p>
 
           <section className="space-y-4">
@@ -57,7 +57,7 @@ const Terms = () => {
           <section className="space-y-4">
             <h2 className="text-2xl font-serif text-text">4. Website Content</h2>
             <p>
-              All website content, including text, images, graphics and branding, belongs to or is used by Thukral Dental & Aesthetic Clinic unless otherwise stated.
+              All website content, including text, images, graphics and branding, belongs to or is used by Thukral Dental Clinic unless otherwise stated.
             </p>
           </section>
 
@@ -78,7 +78,7 @@ const Terms = () => {
           <section className="space-y-4 pt-8 border-t border-border">
             <h2 className="text-2xl font-serif text-text mb-6">7. Contact</h2>
             <address className="not-italic space-y-2">
-              <p className="font-medium text-text">Thukral Dental & Aesthetic Clinic</p>
+              <p className="font-medium text-text">Thukral Dental Clinic</p>
               <p>C 21/30 B-1A, Pishachmochan, Varanasi, Uttar Pradesh 221002</p>
               <p>Phone: 082997 19955</p>
             </address>

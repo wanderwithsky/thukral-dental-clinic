@@ -35,7 +35,7 @@ const galleryItems: GalleryItem[] = [
     number: '02',
     title: 'Orthodontic Alignment & Smile Design',
     description:
-      'Targeted correction of crowded anterior teeth and arch coordination, creating balanced facial aesthetics and oral health.',
+      'Targeted correction of crowded anterior teeth and arch coordination, creating balanced facial harmony and oral health.',
     imageUrl:
       'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653419/7acc836f-8c51-4d99-9093-551eff85029a.jpg',
     altText:
@@ -55,7 +55,7 @@ const galleryItems: GalleryItem[] = [
   {
     id: 'case-04',
     number: '04',
-    title: 'Aesthetic Smile Makeover & Restoration',
+    title: 'Smile Makeover & Restoration',
     description:
       'Restorative treatment harmonizing tooth shade, contour, and alignment to deliver a healthy, revitalized smile.',
     imageUrl:
@@ -362,7 +362,7 @@ const WhyThukral = () => {
               A Closer Look at Our Work.
             </h3>
             <p className="text-xs sm:text-sm text-[#6B625B] font-light leading-relaxed">
-              Explore our dental treatments, smile transformations and aesthetic results. Discover how we combine clinical expertise, precision and personalised care to create confident smiles.
+              Explore our dental treatments, smile transformations and healthy results. Discover how we combine clinical expertise, precision and personalised care to create confident smiles.
             </p>
           </div>
 

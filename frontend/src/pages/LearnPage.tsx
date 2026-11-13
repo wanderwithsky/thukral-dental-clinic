@@ -25,7 +25,7 @@ const LearnPage = () => {
     }
     metaDescription.setAttribute(
       'content',
-      'Smile School by Thukral Dental: Clear answers to your dental questions. Discover bite-sized insights on oral hygiene, braces, aligners, and modern dentistry from Thukral Dental & Aesthetic Clinic.'
+      'Smile School by Thukral Dental: Clear answers to your dental questions. Discover bite-sized insights on oral hygiene, braces, aligners, and modern dentistry from Thukral Dental Clinic.'
     );
 
     return () => {
@@ -196,7 +196,7 @@ const LearnPage = () => {
               Want to Learn More About Your Smile?
             </h3>
             <p className="text-sm sm:text-base text-text-muted font-light max-w-xl mx-auto mb-8">
-              Follow us on Instagram for dental care tips, smile transformations, treatment insights, and the latest updates from Thukral Dental &amp; Aesthetic Clinic.
+              Follow us on Instagram for dental care tips, smile transformations, treatment insights, and the latest updates from Thukral Dental Clinic.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               <a

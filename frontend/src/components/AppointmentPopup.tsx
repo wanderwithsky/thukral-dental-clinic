@@ -187,7 +187,7 @@ const AppointmentPopup = () => {
                 <span className="text-xl leading-none mt-0.5">📲</span>
                 <div className="text-xs sm:text-sm text-amber-950 dark:text-amber-200 leading-relaxed font-light">
                   <strong className="font-semibold text-amber-900 dark:text-amber-100">Final Step Required: </strong>
-                  Please switch to the WhatsApp chat window and press <strong className="font-semibold underline">Send</strong> to deliver your appointment request to Thukral Dental &amp; Aesthetic Clinic.
+                  Please switch to the WhatsApp chat window and press <strong className="font-semibold underline">Send</strong> to deliver your appointment request to Thukral Dental Clinic.
                 </div>
               </div>
             </div>

@@ -22,7 +22,7 @@ const Testimonials = () => {
               <span className="italic text-primary">Exceptional Smiles.</span>
             </h1>
             <p className="text-base md:text-lg text-text-muted leading-relaxed font-light">
-              Hear real patient experiences and discover what matters to patients throughout their dental care journey at Thukral Dental &amp; Aesthetic Clinic.
+              Hear real patient experiences and discover what matters to patients throughout their dental care journey at Thukral Dental Clinic.
             </p>
           </div>
 
@@ -98,7 +98,7 @@ const Testimonials = () => {
               </p>
               <div className="bg-background/80 p-5 rounded-xl border border-border/50 mb-10 inline-block text-left mx-auto lg:mx-0 shadow-sm">
                 <p className="text-sm font-medium text-text mb-1">
-                  Treated at Thukral Dental & Aesthetic Clinic.
+                  Treated at Thukral Dental Clinic.
                 </p>
                 <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">
                   Patient: Mr. Stephen &middot; Australia
@@ -163,7 +163,7 @@ const Testimonials = () => {
               </p>
               <div className="bg-background-secondary p-5 rounded-xl border border-border/50 mb-10 inline-block text-left mx-auto lg:mx-0 shadow-sm">
                 <p className="text-sm font-medium text-text mb-1">
-                  Treated at Thukral Dental & Aesthetic Clinic.
+                  Treated at Thukral Dental Clinic.
                 </p>
                 <p className="text-xs text-text-muted uppercase tracking-wider font-semibold">
                   Patient: UK
@@ -196,7 +196,7 @@ const Testimonials = () => {
                 Your Experience Matters
               </h3>
               <p className="text-base md:text-lg text-text-muted leading-relaxed font-light mb-10">
-                Thank you for appreciating our services and efforts. Your kind words and trust mean a great deal to the entire team at Thukral Dental & Aesthetic Clinic.
+                Thank you for appreciating our services and efforts. Your kind words and trust mean a great deal to the entire team at Thukral Dental Clinic.
               </p>
               
               <div className="flex justify-center lg:justify-start">

@@ -162,7 +162,7 @@ export const FloatingSocialWidget: React.FC = () => {
   return (
     <aside
       ref={widgetRef}
-      aria-label="Connect with Thukral Dental & Aesthetic Clinic via Social Media and Messaging"
+      aria-label="Connect with Thukral Dental Clinic via Social Media and Messaging"
       className="fixed bottom-6 right-6 z-40 print:hidden select-none flex flex-col items-center"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -249,7 +249,7 @@ export const FloatingSocialWidget: React.FC = () => {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Connect with Thukral Dental & Aesthetic Clinic on WhatsApp (opens in new tab)"
+          aria-label="Connect with Thukral Dental Clinic on WhatsApp (opens in new tab)"
           onClick={handleChannelClick}
           className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-lg hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 ease-out focus:outline-none focus:ring-4 focus:ring-[#25D366]/40 cursor-pointer overflow-hidden p-3 sm:p-3.5"
           style={{

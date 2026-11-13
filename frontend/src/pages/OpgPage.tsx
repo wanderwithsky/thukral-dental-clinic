@@ -24,7 +24,7 @@ const OpgPage: React.FC = () => {
   // SEO Title and Meta Description
   useEffect(() => {
     const originalTitle = document.title;
-    document.title = "OPG Panoramic Dental X-Ray in Varanasi | Thukral Dental & Aesthetic Clinic";
+    document.title = "OPG Panoramic Dental X-Ray in Varanasi | Thukral Dental Clinic";
 
     let metaDescription = document.querySelector('meta[name="description"]');
     const prevDescription = metaDescription ? metaDescription.getAttribute('content') : '';
@@ -36,7 +36,7 @@ const OpgPage: React.FC = () => {
     }
     metaDescription.setAttribute(
       'content',
-      'Learn about Orthopantomogram (OPG) panoramic dental X-rays at Thukral Dental & Aesthetic Clinic in Varanasi. Full-jaw two-dimensional imaging for wisdom teeth, jaw health, and treatment planning.'
+      'Learn about Orthopantomogram (OPG) panoramic dental X-rays at Thukral Dental Clinic in Varanasi. Full-jaw two-dimensional imaging for wisdom teeth, jaw health, and treatment planning.'
     );
 
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });

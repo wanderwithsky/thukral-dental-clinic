@@ -7,7 +7,7 @@ export const TREATMENT_ASSETS = {
   // Clinical Operations / Atmosphere
   drExaminingYoungPatient: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664990/492004405_2644301385919152_3283715891965521739_n.jpg', // Image 01 (960x720)
   chairsideProcedureAssistance: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664920/52720428_923426484673326_9035049136948248576_n.jpg', // Image 02 (720x960)
-  hairAestheticProcedure: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664622/03.webp', // Image 03 (574x1020)
+  chairsideClinicalProcedure: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664622/03.webp', // Image 03 (574x1020)
   laserAdvancedDeviceProcedure: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664624/06.webp', // Image 04 (471x1020)
   sterileSurgicalPrecision: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792664622/02.webp', // Image 05 (765x1020)
   clinicalOralExamination: 'https://res.cloudinary.com/zvlxacfu/image/upload/v1790670701/46e68157-13ec-4f35-abd2-7fc3ea75dc21.png', // Dr. Anchit Clinical Oral Assessment (1024x1536)
@@ -18,9 +18,9 @@ export const TREATMENT_ASSETS = {
   teethWhiteningBeforeAfter: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653455/c8714864-ab0b-4531-8181-4297d6879d9f.jpg', // Image 08 (1206x1242)
   smileMakeoverArchRestoration: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653443/6e34f1dd-541a-4db5-bdb6-97c557d17641.jpg', // Image 09 (1220x1206)
   orthodonticProfileAlignment: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653392/2bfda034-4fab-4228-8ced-8e4904d02996.jpg', // Image 10 (1206x1210)
-  aestheticArchHarmony: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653362/3982f855-4937-4d6c-84db-a4e238842add.jpg', // Image 11 (1206x1182)
+  archHarmonyTransformation: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653362/3982f855-4937-4d6c-84db-a4e238842add.jpg', // Image 11 (1206x1182)
   restorativeCrownAnteriorRepair: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653344/2358833f-8984-4e1d-9686-cc4b1a0242c9.jpg', // Image 12 (1206x1063)
-  aestheticFacialHarmonyTransformation: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653350/e2aa2a30-57c7-4bcb-a104-1d589f397e64.jpg', // Image 13 (1206x1197)
+  facialHarmonyTransformation: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653350/e2aa2a30-57c7-4bcb-a104-1d589f397e64.jpg', // Image 13 (1206x1197)
   fullSmileTransformationClinical: 'https://res.cloudinary.com/hmjaaen2/image/upload/v1792653325/306e470f-b028-4831-9afe-199b6e41b123.jpg', // Image 14 (1206x1206)
 
   // Additional Verified Gallery Transformation Assets (Images 04 to 09)
@@ -50,32 +50,32 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
     title: 'In-Clinic Chairside Dental Procedure',
     category: 'Clinical Excellence',
     description: 'Dr. Anchit Thukral performing a chairside dental procedure with assistant support in the advanced treatment operatory.',
-    alt: 'Dr. Anchit Thukral performing chairside clinical procedure at Thukral Dental & Aesthetic Clinic',
+    alt: 'Dr. Anchit Thukral performing chairside clinical procedure at Thukral Dental Clinic',
   },
-  // 1: Smile & Aesthetic - Smile Transformation
+  // 1: Smile Design - Smile Transformation
   {
     id: 'item-full-smile',
     image: TREATMENT_ASSETS.fullSmileTransformationClinical,
     title: 'Comprehensive Smile Transformation',
-    category: 'Smile & Aesthetic',
-    description: 'Clinical documentation showing pre- and post-treatment aesthetic smile rehabilitation and restored dental symmetry.',
+    category: 'Smile Design',
+    description: 'Clinical documentation showing pre- and post-treatment smile rehabilitation and restored dental symmetry.',
     alt: 'Comprehensive smile transformation clinical before and after documentation',
   },
-  // 2: Smile & Aesthetic - Teeth Whitening
+  // 2: Smile Design - Teeth Whitening
   {
     id: 'item-whitening',
     image: TREATMENT_ASSETS.teethWhiteningBeforeAfter,
     title: 'In-Office Teeth Whitening Progression',
-    category: 'Smile & Aesthetic',
+    category: 'Smile Design',
     description: 'Evidence-based professional teeth whitening results showing substantial shade brightening while preserving enamel health.',
     alt: 'Teeth whitening shade comparison before and after',
   },
-  // 3: Smile & Aesthetic - Smile Design
+  // 3: Smile Design - Smile Design
   {
     id: 'item-smile-design',
     image: TREATMENT_ASSETS.smileMakeoverArchRestoration,
     title: 'Smile Design & Arch Harmony',
-    category: 'Smile & Aesthetic',
+    category: 'Smile Design',
     description: 'Custom diagnostic treatment plan resolving tooth proportion, alignment, and arch symmetry.',
     alt: 'Smile design and dental arch alignment clinical record',
   },
@@ -103,7 +103,7 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
     image: TREATMENT_ASSETS.restorativeCrownAnteriorRepair,
     title: 'Restorative Crowns & Anterior Repair',
     category: 'Restorative Dentistry',
-    description: 'Precision aesthetic ceramic crowns restoring broken and compromised front teeth to lifelike contour and strength.',
+    description: 'Precision ceramic crowns restoring broken and compromised front teeth to lifelike contour and strength.',
     alt: 'Anterior tooth restoration and dental crown repair before and after',
   },
   // 7: Restorative - Consultations
@@ -136,16 +136,16 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
   // 12: Real Results - Case 02
   {
     id: 'item-case-arch',
-    image: TREATMENT_ASSETS.aestheticArchHarmony,
+    image: TREATMENT_ASSETS.archHarmonyTransformation,
     title: 'Case 02: Anterior Symmetry & Contour',
-    category: 'Aesthetic Dentistry',
-    description: 'Comprehensive dental records illustrating alignment correction and aesthetic restoration under standardized clinical views.',
-    alt: 'Intraoral and smile documentation of alignment correction and aesthetic arch harmony',
+    category: 'Cosmetic & Restorative Dentistry',
+    description: 'Comprehensive dental records illustrating alignment correction and restorative treatment under standardized clinical views.',
+    alt: 'Intraoral and smile documentation of alignment correction and arch harmony',
   },
   // 13: Real Results - Case 03
   {
     id: 'item-case-harmony',
-    image: TREATMENT_ASSETS.aestheticFacialHarmonyTransformation,
+    image: TREATMENT_ASSETS.facialHarmonyTransformation,
     title: 'Case 03: Comprehensive Smile Makeover',
     category: 'Smile Transformation',
     description: 'Harmonization of smile arc, tooth shade, and lip line symmetry delivering a revitalized, natural appearance.',
@@ -166,7 +166,7 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
     image: TREATMENT_ASSETS.transformationBiteHarmony05,
     title: 'Case 05: Anterior Bite Harmony & Alignment',
     category: 'Orthodontic Correction',
-    description: 'Systematic bite adjustment and anterior leveling delivering structural stability and enhanced smile aesthetics.',
+    description: 'Systematic bite adjustment and anterior leveling delivering structural stability and enhanced smile harmony.',
     alt: 'Clinical before and after documentation of anterior bite harmony and tooth leveling',
   },
   // 16: Real Results - Case 06 (Image 06)
@@ -175,7 +175,7 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
     image: TREATMENT_ASSETS.transformationOcclusalGuidance06,
     title: 'Case 06: Occlusal Guidance & Crossbite Correction',
     category: 'Orthodontic Alignment',
-    description: 'Conservative correction of transverse occlusal discrepancies, restoring balanced canine guidance and smile aesthetics.',
+    description: 'Conservative correction of transverse occlusal discrepancies, restoring balanced canine guidance and smile harmony.',
     alt: 'Photographic clinical records of crossbite correction and functional occlusal guidance',
   },
   // 17: Real Results - Case 07 (Image 07)
@@ -184,7 +184,7 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
     image: TREATMENT_ASSETS.transformationOrthodonticAlignment07,
     title: 'Case 07: Orthodontic Alignment & Smile Design',
     category: 'Orthodontic Alignment',
-    description: 'Targeted correction of crowded anterior teeth and arch coordination, creating balanced facial aesthetics and oral health.',
+    description: 'Targeted correction of crowded anterior teeth and arch coordination, creating balanced facial harmony and oral health.',
     alt: 'Intraoral and facial photographic alignment records showing orthodontic correction',
   },
   // 18: Real Results - Case 08 (Image 08)
@@ -192,9 +192,9 @@ const ALL_TREATMENT_ITEMS: LightboxItem[] = [
     id: 'item-case-08',
     image: TREATMENT_ASSETS.transformationRehabilitation08,
     title: 'Case 08: Full Smile Rehabilitation & Proportions',
-    category: 'Aesthetic Dentistry',
-    description: 'Comprehensive restorative and aesthetic smile design re-establishing proportional tooth height, shade, and natural luster.',
-    alt: 'Full aesthetic smile makeover and rehabilitation before and after documentation',
+    category: 'Cosmetic & Restorative Dentistry',
+    description: 'Comprehensive restorative smile design re-establishing proportional tooth height, shade, and natural luster.',
+    alt: 'Full smile makeover and rehabilitation before and after documentation',
   },
   // 19: Real Results - Case 09 (Image 09)
   {
@@ -464,14 +464,14 @@ const Treatments = () => {
             <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-semibold tracking-wider uppercase mb-6 shadow-xs">
                 <Sparkles size={13} className="text-primary animate-pulse" />
-                <span>CLINICAL EXCELLENCE &middot; DENTAL & AESTHETIC</span>
+                <span>CLINICAL EXCELLENCE &middot; COMPREHENSIVE DENTAL CARE</span>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-[4rem] font-serif leading-[1.15] text-text mb-8">
                 Complete Care for <br />
                 <span className="italic text-primary">Your Smile.</span>
               </h1>
               <p className="text-base md:text-lg text-text-muted leading-relaxed font-light max-w-lg mb-10">
-                At Thukral Dental & Aesthetic Clinic, every procedure is guided by meticulous diagnosis, advanced clinical technology, and Dr. Anchit Thukral&apos;s commitment to gentle, unhurried patient care tailored to your unique goals.
+                At Thukral Dental Clinic, every procedure is guided by meticulous diagnosis, advanced clinical technology, and Dr. Anchit Thukral&apos;s commitment to gentle, unhurried patient care tailored to your unique goals.
               </p>
               <div className="flex flex-wrap gap-5 items-center">
                 <Link to="/appointment" className="btn-primary flex items-center gap-2">
@@ -551,17 +551,17 @@ const Treatments = () => {
 
           <div className="flex flex-col space-y-24 md:space-y-32">
             
-            {/* Category 1: Smile & Aesthetic (Items 1, 2, 3) */}
+            {/* Category 1: Smile Design (Items 1, 2, 3) */}
             <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
               <div className="mb-8 flex items-center justify-between border-b border-border pb-4">
                 <div className="flex items-center gap-4">
                   <span className="text-xl font-serif text-primary">01 /</span>
                   <h3 className="text-2xl md:text-3xl font-serif text-text tracking-[0.05em] uppercase">
-                    Smile & Aesthetic
+                    Smile Design
                   </h3>
                 </div>
                 <span className="text-xs text-text-muted uppercase tracking-wider hidden sm:inline">
-                  Aesthetic Excellence
+                  Clinical Excellence
                 </span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">

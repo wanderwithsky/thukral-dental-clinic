@@ -19,7 +19,7 @@ const AboutSection = () => {
             </h2>
             <div className="space-y-6 text-lg text-text-muted leading-relaxed font-sans font-light">
               <p>
-                At Thukral Dental & Aesthetic Clinic, we believe that modern dentistry should be built around your comfort and peace of mind. We have designed our practice to feel less like a clinical hospital and more like a calming, supportive environment.
+                At Thukral Dental Clinic, we believe that modern dentistry should be built around your comfort and peace of mind. We have designed our practice to feel less like a clinical hospital and more like a calming, supportive environment.
               </p>
               <p>
                 Whether you're visiting for a routine check-up, a complete smile transformation, or advanced orthodontic care, our team prioritizes clear communication. We ensure you fully understand your treatment options before we begin.

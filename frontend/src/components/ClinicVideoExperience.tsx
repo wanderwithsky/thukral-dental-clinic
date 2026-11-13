@@ -159,7 +159,7 @@ export const ClinicVideoExperience = ({ videoUrl, className = '' }: ClinicVideoE
                   </div>
                   <div>
                     <h4 className="text-xs sm:text-sm font-semibold text-text group-hover/pill:text-primary transition-colors">
-                      Precision Aesthetics
+                      Clinical Precision
                     </h4>
                     <p className="text-[11px] sm:text-xs text-text-muted font-light leading-snug">
                       Custom braces & modern alignment

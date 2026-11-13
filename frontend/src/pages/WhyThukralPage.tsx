@@ -30,7 +30,7 @@ const careStages = [
     step: '01',
     title: 'Understand Your Needs',
     description:
-      'Listen to your dental concerns, lifestyle, aesthetic aspirations, and past experiences with patience.',
+      'Listen to your dental concerns, lifestyle, smile aspirations, and past experiences with patience.',
   },
   {
     step: '02',
@@ -89,12 +89,12 @@ const verifiedReviews = [
 // Section 7: FAQs
 const faqs = [
   {
-    question: 'What makes Thukral Dental & Aesthetic Clinic different?',
+    question: 'What makes Thukral Dental Clinic different?',
     answer:
       'We combine clinical precision with an unhurried, comfort-first philosophy. Rather than rushing into procedures, we take time to listen, provide clear jargon-free explanations, and create a calm, supportive environment where patients feel reassured and in control.',
   },
   {
-    question: 'What dental and aesthetic treatments are available?',
+    question: 'What dental treatments are available?',
     answer:
       'Our practice offers a comprehensive suite of dental solutions including smile design, teeth whitening, clear aligners, orthodontic treatment, dental implants, root canal therapy, and general restorative dental care.',
   },
@@ -106,7 +106,7 @@ const faqs = [
   {
     question: 'Can I discuss my dental concerns before choosing a treatment?',
     answer:
-      'Yes, absolutely. Every consultation begins with a thoughtful discussion of your concerns, treatment expectations, and aesthetic goals so you can make confident, informed decisions without any pressure.',
+      'Yes, absolutely. Every consultation begins with a thoughtful discussion of your concerns, treatment expectations, and personal goals so you can make confident, informed decisions without any pressure.',
   },
   {
     question: 'How can I find the clinic?',
@@ -156,7 +156,7 @@ const WhyThukralPage = () => {
   };
 
   useEffect(() => {
-    document.title = 'Why TDAC? | Thukral Dental & Aesthetic Clinic';
+    document.title = 'Why Thukral Dental? | Thukral Dental Clinic';
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement('meta');
@@ -165,7 +165,7 @@ const WhyThukralPage = () => {
     }
     metaDescription.setAttribute(
       'content',
-      'Discover why patients choose Thukral Dental & Aesthetic Clinic in Varanasi. Comfort-first care, clear communication, hygienic clinic environment, and modern aesthetic dentistry.'
+      'Discover why patients choose Thukral Dental Clinic in Varanasi. Comfort-first care, clear communication, hygienic clinic environment, and modern restorative dentistry.'
     );
 
     window.scrollTo(0, 0);
@@ -200,7 +200,7 @@ const WhyThukralPage = () => {
             {/* Left Content */}
             <div className="w-full lg:w-1/2 opacity-0 animate-fade-in-up">
               <span className="text-xs md:text-sm font-semibold tracking-[0.25em] uppercase text-primary mb-4 block">
-                WHY TDAC
+                WHY THUKRAL DENTAL
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-[3.8rem] font-serif leading-[1.12] text-text mb-6">
                 Your Smile Deserves <br className="hidden sm:inline" />
@@ -241,7 +241,7 @@ const WhyThukralPage = () => {
             >
               <div className="relative">
                 <MediaPlaceholder
-                  label="Thukral Dental & Aesthetic Clinic"
+                  label="Thukral Dental Clinic"
                   previewSrc="https://res.cloudinary.com/hmjaaen2/image/upload/v1792573055/ff65b9b3-82ea-4e18-98fb-586ed72472b9.jpg"
                   aspectRatio="aspect-[4/3] sm:aspect-[16/11]"
                   className="shadow-xl"
@@ -335,10 +335,10 @@ const WhyThukralPage = () => {
               />
             </div>
 
-            {/* 4. Consultation & Aesthetic Smile Suite */}
+            {/* 4. Consultation & Smile Suite */}
             <div>
               <MediaPlaceholder
-                label="Aesthetic Consultation & Care"
+                label="Consultation & Clinical Care"
                 previewSrc="https://res.cloudinary.com/hmjaaen2/image/upload/v1792573659/0c183510-fec8-4043-b119-686cad6aecaa.jpg"
                 aspectRatio="aspect-[4/3] md:aspect-auto"
                 objectPosition="object-center"
@@ -445,7 +445,7 @@ const WhyThukralPage = () => {
               <span className="italic">every step of the way</span>
             </h2>
             <p className="text-base md:text-lg text-text-muted font-light leading-relaxed max-w-2xl mx-auto">
-              Experience personalized care, advanced treatments, and reassuring results with our specialist dental & aesthetic services led by Dr. Anchit Thukral.
+              Experience personalized care, advanced treatments, and reassuring results with our specialist dental services led by Dr. Anchit Thukral.
             </p>
           </div>
 
@@ -495,7 +495,7 @@ const WhyThukralPage = () => {
                     Personalized Care
                   </h3>
                   <p className="text-sm text-text-muted font-light leading-relaxed">
-                    Every treatment plan is tailored to your unique smile anatomy, aesthetic expectations, and personal comfort.
+                    Every treatment plan is tailored to your unique smile anatomy, treatment expectations, and personal comfort.
                   </p>
                 </div>
               </div>
@@ -601,7 +601,7 @@ const WhyThukralPage = () => {
               In Our Patients' Words
             </h2>
             <p className="text-base md:text-lg text-text-muted font-light leading-relaxed">
-              Genuine feedback from patients who entrusted their smile and comfort to Thukral Dental & Aesthetic Clinic.
+              Genuine feedback from patients who entrusted their smile and comfort to Thukral Dental Clinic.
             </p>
           </div>
 

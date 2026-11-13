@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 
 const PrivacyPolicy = () => {
   useEffect(() => {
-    document.title = "Privacy Policy | Thukral Dental & Aesthetic Clinic";
+    document.title = "Privacy Policy | Thukral Dental Clinic";
     
     // Manage meta description
     let metaDescription = document.querySelector('meta[name="description"]');
@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
       metaDescription.setAttribute('name', 'description');
       document.head.appendChild(metaDescription);
     }
-    metaDescription.setAttribute('content', 'Privacy Policy for Thukral Dental & Aesthetic Clinic. Learn how we collect, use, and protect your information.');
+    metaDescription.setAttribute('content', 'Privacy Policy for Thukral Dental Clinic. Learn how we collect, use, and protect your information.');
     
     window.scrollTo(0, 0);
   }, []);
@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
         
         <div className="space-y-12 text-base md:text-lg text-text-muted leading-relaxed font-light">
           <p className="text-lg md:text-xl text-text font-serif italic mb-12">
-            Your privacy matters to us. This Privacy Policy explains how Thukral Dental & Aesthetic Clinic collects, uses and protects information shared through this website.
+            Your privacy matters to us. This Privacy Policy explains how Thukral Dental Clinic collects, uses and protects information shared through this website.
           </p>
 
           <section className="space-y-4">
@@ -75,7 +75,7 @@ const PrivacyPolicy = () => {
           <section className="space-y-4 pt-8 border-t border-border">
             <h2 className="text-2xl font-serif text-text mb-6">6. Contact</h2>
             <address className="not-italic space-y-2">
-              <p className="font-medium text-text">Thukral Dental & Aesthetic Clinic</p>
+              <p className="font-medium text-text">Thukral Dental Clinic</p>
               <p>C 21/30 B-1A, Pishachmochan, Varanasi, Uttar Pradesh 221002</p>
               <p>Phone: 082997 19955</p>
             </address>

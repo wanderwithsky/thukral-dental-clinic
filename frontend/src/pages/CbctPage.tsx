@@ -19,7 +19,7 @@ const CbctPage = () => {
   // Update document title and meta description
   useEffect(() => {
     const originalTitle = document.title;
-    document.title = "CBCT Dental Imaging in Varanasi | Thukral Dental & Aesthetic Clinic";
+    document.title = "CBCT Dental Imaging in Varanasi | Thukral Dental Clinic";
 
     let metaDescription = document.querySelector('meta[name="description"]');
     const prevDescription = metaDescription ? metaDescription.getAttribute('content') : '';
@@ -31,7 +31,7 @@ const CbctPage = () => {
     }
     metaDescription.setAttribute(
       'content',
-      'Explore 3D CBCT dental imaging at Thukral Dental & Aesthetic Clinic in Varanasi. Accurate anatomical visualization for implants, orthodontics, and complex diagnosis.'
+      'Explore 3D CBCT dental imaging at Thukral Dental Clinic in Varanasi. Accurate anatomical visualization for implants, orthodontics, and complex diagnosis.'
     );
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -149,7 +149,7 @@ const CbctPage = () => {
               </h1>
 
               <p className="text-base sm:text-lg text-text-muted leading-relaxed font-light mb-10 max-w-xl mx-auto lg:mx-0">
-                At Thukral Dental &amp; Aesthetic Clinic, CBCT imaging can help provide a detailed three-dimensional view of teeth, jawbone and surrounding anatomical structures when additional information is clinically needed.
+                At Thukral Dental Clinic, CBCT imaging can help provide a detailed three-dimensional view of teeth, jawbone and surrounding anatomical structures when additional information is clinically needed.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
@@ -1034,7 +1034,7 @@ const CbctPage = () => {
                 CBCT uses ionising radiation, so the decision to scan should be based on your clinical needs. Dental CBCT generally involves more radiation than conventional dental X-rays, although its dose is usually lower than that of medical CT examinations.
               </p>
               <p>
-                At Thukral Dental &amp; Aesthetic Clinic, CBCT imaging should be recommended only when the dentist determines that the additional information is clinically useful. The scan area and exposure settings should be selected appropriately to obtain sufficient diagnostic information while minimising unnecessary exposure.
+                At Thukral Dental Clinic, CBCT imaging should be recommended only when the dentist determines that the additional information is clinically useful. The scan area and exposure settings should be selected appropriately to obtain sufficient diagnostic information while minimising unnecessary exposure.
               </p>
             </div>
           </div>
@@ -1135,7 +1135,7 @@ const CbctPage = () => {
               >
                 <img
                   src="https://res.cloudinary.com/zvlxacfu/image/upload/v1793620442/060a0ead-38ce-408d-afe5-c57fd6bd7bde.jpg"
-                  alt="Clinical treatment room and radiography suite at Thukral Dental & Aesthetic Clinic"
+                  alt="Clinical treatment room and radiography suite at Thukral Dental Clinic"
                   className="w-full h-full object-cover object-[10%_center] transform transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
                 />
@@ -1222,7 +1222,7 @@ const CbctPage = () => {
           </h2>
 
           <p className="text-base sm:text-lg text-text-muted font-light leading-relaxed max-w-2xl mx-auto mb-10">
-            Discuss your dental concerns with the team at Thukral Dental &amp; Aesthetic Clinic to understand whether CBCT imaging may be appropriate for your needs.
+            Discuss your dental concerns with the team at Thukral Dental Clinic to understand whether CBCT imaging may be appropriate for your needs.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
@@ -1272,7 +1272,7 @@ const CbctPage = () => {
             </button>
             <img
               src="https://res.cloudinary.com/zvlxacfu/image/upload/v1793620442/060a0ead-38ce-408d-afe5-c57fd6bd7bde.jpg"
-              alt="Clinical treatment room and radiography suite at Thukral Dental & Aesthetic Clinic"
+              alt="Clinical treatment room and radiography suite at Thukral Dental Clinic"
               className="max-w-full max-h-[82vh] object-contain rounded-xl shadow-2xl"
             />
           </div>

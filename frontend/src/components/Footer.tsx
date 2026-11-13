@@ -16,7 +16,7 @@ const Footer = () => {
                 THUKRAL
               </span>
               <span className="text-xs uppercase tracking-[0.1em] text-text-muted mt-1">
-                Dental &amp; Aesthetic Clinic
+                Dental Clinic
               </span>
             </Link>
 
@@ -64,7 +64,7 @@ const Footer = () => {
               {[
                 { name: 'Home', path: '/' },
                 { name: 'About', path: '/about' },
-                { name: 'Why TDAC', path: '/why-thukral' },
+                { name: 'Why Thukral Dental', path: '/why-thukral' },
                 { name: 'Treatments', path: '/treatments' },
                 { name: 'Smile School', path: '/learn' },
                 { name: 'Testimonials', path: '/testimonials' },
@@ -104,7 +104,7 @@ const Footer = () => {
         {/* Bottom Row: Copyright & Developer Credit */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-text-muted text-center md:text-left">
-            &copy; {new Date().getFullYear()} Thukral Dental &amp; Aesthetic Clinic. All rights reserved.
+            &copy; {new Date().getFullYear()} Thukral Dental Clinic. All rights reserved.
           </p>
           <p className="text-xs text-text-muted text-center md:text-right">
             Developed by Team{' '}

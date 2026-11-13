@@ -58,7 +58,7 @@ export const AdminDashboard: React.FC = () => {
   const [updateSuccessMsg, setUpdateSuccessMsg] = useState<string>('');
 
   useEffect(() => {
-    document.title = "Admin Dashboard | Thukral Dental & Aesthetic Clinic";
+    document.title = "Admin Dashboard | Thukral Dental Clinic";
   }, []);
 
   const loadDashboardData = async () => {

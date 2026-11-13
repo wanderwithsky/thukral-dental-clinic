@@ -17,7 +17,7 @@ export function buildAppointmentWhatsAppMessage(data: AppointmentWhatsAppDetails
   const emailDisplay = data.email && data.email.trim() ? data.email.trim() : 'Not Provided';
   const additionalMessage = data.message && data.message.trim() ? data.message.trim() : 'Not Provided';
 
-  return `*New Appointment Request - Thukral Dental & Aesthetic Clinic*
+  return `*New Appointment Request - Thukral Dental Clinic*
 
 *Patient Name:* ${data.name.trim()}
 *Phone Number:* ${data.phone.trim()}

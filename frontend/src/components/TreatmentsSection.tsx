@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 const treatments = [
   {
-    category: "Smile & Aesthetic",
+    category: "Smile Design",
     number: "01",
     items: [
       { name: "Teeth Whitening", image: "/images/teeth_whitening_1790669407239.jpg" },

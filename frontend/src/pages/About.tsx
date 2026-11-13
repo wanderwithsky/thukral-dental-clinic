@@ -133,10 +133,10 @@ const About = () => {
                   Every dental practice begins with a reason. For Dr. Anchit Thukral, that reason has always been simple &mdash; to make quality dental care more precise, more personal and more reassuring for every patient.
                 </p>
                 <p>
-                  His interest in dentistry developed from a desire to combine medical science with aesthetic artistry. He embarked on his academic journey at <span className="text-text/70 italic">[Dental Education / University]</span>, graduating in <span className="text-text/70 italic">[Year of Graduation]</span> with a clear focus on modern clinical practices.
+                  His interest in dentistry developed from a desire to combine medical science with clinical artistry. He embarked on his academic journey at <span className="text-text/70 italic">[Dental Education / University]</span>, graduating in <span className="text-text/70 italic">[Year of Graduation]</span> with a clear focus on modern clinical practices.
                 </p>
                 <p>
-                  Transitioning from learning dentistry to practising it, Dr. Thukral recognised the importance of patient communication. He realised that reducing clinical anxiety starts with explaining treatments clearly and involving patients in their own care. This core philosophy eventually shaped the foundation of Thukral Dental & Aesthetic Clinic.
+                  Transitioning from learning dentistry to practising it, Dr. Thukral recognised the importance of patient communication. He realised that reducing clinical anxiety starts with explaining treatments clearly and involving patients in their own care. This core philosophy eventually shaped the foundation of Thukral Dental Clinic.
                 </p>
               </div>
             </div>
@@ -202,7 +202,7 @@ const About = () => {
                   <span className="text-primary font-serif text-2xl mb-2 block">03 &mdash; Advanced Dentistry</span>
                 </div>
                 <div className="w-full md:w-[45%] pl-8 md:pl-0 border-l-2 md:border-l-0 border-border/60 md:border-none">
-                  <p className="text-text-muted font-light leading-relaxed">Expanding knowledge into orthodontics, implants, smile aesthetics and modern dental technology.</p>
+                  <p className="text-text-muted font-light leading-relaxed">Expanding knowledge into orthodontics, implants, smile design and modern dental technology.</p>
                 </div>
               </div>
 
@@ -210,7 +210,7 @@ const About = () => {
               <div className="relative flex flex-col md:flex-row-reverse justify-between items-center group opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                 <div className="hidden md:block w-5 h-5 rounded-full border-4 border-background bg-primary absolute left-1/2 -translate-x-1/2 z-10 group-hover:scale-125 transition-transform duration-300"></div>
                 <div className="w-full md:w-[45%] text-left mb-4 md:mb-0 pl-8 md:pl-0 border-l-2 md:border-l-0 border-border/60 md:border-none">
-                  <span className="text-primary font-serif text-2xl mb-2 block">04 &mdash; Thukral Dental & Aesthetic Clinic</span>
+                  <span className="text-primary font-serif text-2xl mb-2 block">04 &mdash; Thukral Dental Clinic</span>
                 </div>
                 <div className="w-full md:w-[45%] md:text-right pl-8 md:pl-0 border-l-2 md:border-l-0 border-border/60 md:border-none">
                   <p className="text-text-muted font-light leading-relaxed">Building a practice around personalised treatment, modern equipment and unmatched patient comfort.</p>
@@ -232,17 +232,17 @@ const About = () => {
                 THE STORY BEHIND THUKRAL
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-text mb-8">
-                Why TDAC?
+                Why Thukral Dental?
               </h2>
               <div className="space-y-6 text-base md:text-lg text-text-muted leading-relaxed font-light">
                 <p>
-                  Thukral Dental & Aesthetic Clinic was built around a simple belief: modern dentistry should not feel intimidating.
+                  Thukral Dental Clinic was built around a simple belief: modern dentistry should not feel intimidating.
                 </p>
                 <p>
                   Patients deserve to understand what is happening, why a treatment is recommended, what their options are, and what they can realistically expect.
                 </p>
                 <p>
-                  From routine dental care to advanced orthodontic and aesthetic treatments, the focus remains the same &mdash; thoughtful planning, clear communication and personalised care.
+                  From routine dental care to advanced orthodontic and restorative treatments, the focus remains the same &mdash; thoughtful planning, clear communication and personalised care.
                 </p>
               </div>
             </div>
@@ -251,7 +251,7 @@ const About = () => {
               <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl border border-border/80 bg-background-secondary">
                 <img
                   src="/why-tdac.jpg"
-                  alt="Thukral Dental & Aesthetic Clinic - Thoughtful patient care"
+                  alt="Thukral Dental Clinic - Thoughtful patient care"
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
@@ -302,10 +302,10 @@ const About = () => {
               </h2>
               <div className="space-y-6 text-base md:text-lg text-text-muted leading-relaxed font-light">
                 <p>
-                  Today, Thukral Dental & Aesthetic Clinic stands as a premier destination for modern dental and aesthetic practices. We have meticulously integrated advanced equipment and technology to ensure that every diagnosis is precise and every treatment is effective.
+                  Today, Thukral Dental Clinic stands as a premier destination for modern dental practices. We have meticulously integrated advanced equipment and technology to ensure that every diagnosis is precise and every treatment is effective.
                 </p>
                 <p>
-                  Whether it is preventive and general dental care, complex orthodontics, dental implants, or smile aesthetics, our clinic is designed around patient comfort and personalised treatment planning. 
+                  Whether it is preventive and general dental care, complex orthodontics, dental implants, or smile design, our clinic is designed around patient comfort and personalised treatment planning. 
                 </p>
               </div>
             </div>
@@ -314,7 +314,7 @@ const About = () => {
               <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-xl border border-border/80 bg-background-secondary">
                 <img
                   src="https://res.cloudinary.com/hmjaaen2/image/upload/v1792664990/492004405_2644301385919152_3283715891965521739_n.jpg"
-                  alt="Thukral Dental & Aesthetic Clinic - Modern clinic interior, treatment operatory and dental setup"
+                  alt="Thukral Dental Clinic - Modern clinic interior, treatment operatory and dental setup"
                   className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
@@ -407,7 +407,7 @@ const About = () => {
           </div>
 
           <span className="text-sm font-semibold tracking-widest uppercase text-text-muted block">
-            Thukral Dental & Aesthetic Clinic &middot; Varanasi
+            Thukral Dental Clinic &middot; Varanasi
           </span>
         </div>
       </section>
@@ -426,7 +426,7 @@ const About = () => {
               Connect With Thukral
             </h2>
             <p className="text-base md:text-lg text-[#BDB1A5] leading-relaxed font-light">
-              Stay connected with Thukral Dental &amp; Aesthetic Clinic, explore our latest updates, patient experiences and clinic information across our social platforms.
+              Stay connected with Thukral Dental Clinic, explore our latest updates, patient experiences and clinic information across our social platforms.
             </p>
           </div>
 
@@ -470,7 +470,7 @@ const About = () => {
               </div>
               <h3 className="text-xl font-serif text-[#F5F0E8] mb-3 group-hover:text-[#FFFFFF] transition-colors">Facebook</h3>
               <p className="text-sm text-[#BDB1A5] font-light leading-relaxed mb-6">
-                Connect with us and stay updated with Thukral Dental &amp; Aesthetic Clinic.
+                Connect with us and stay updated with Thukral Dental Clinic.
               </p>
               <div className="mt-auto text-[#D4C3B3] font-medium text-sm flex items-center gap-1.5 opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300">
                 <span>Connect With Us</span>

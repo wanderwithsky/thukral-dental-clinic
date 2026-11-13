@@ -45,7 +45,7 @@ export const AdminLogin: React.FC = () => {
             Admin Portal
           </h1>
           <p className="text-xs sm:text-sm text-text-muted font-light">
-            Thukral Dental & Aesthetic Clinic Management
+            Thukral Dental Clinic Management
           </p>
         </div>
 

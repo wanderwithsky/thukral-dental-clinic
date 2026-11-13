@@ -29,7 +29,7 @@ app.use('/api/admin', adminRoutes);
 // Root greeting endpoint
 app.get('/', (req, res) => {
   res.json({
-    name: 'Thukral Dental & Aesthetic Clinic API',
+    name: 'Thukral Dental Clinic API',
     status: 'online',
     version: '1.0.0',
     endpoints: {

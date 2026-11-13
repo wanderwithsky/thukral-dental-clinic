@@ -84,7 +84,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Why TDAC', path: '/why-thukral' },
+    { name: 'Why Thukral Dental', path: '/why-thukral' },
     { name: 'Treatments', path: '/treatments', hasDropdown: true },
     { name: 'Diagnostic Imaging', path: '/diagnostic-imaging', hasDiagnosticDropdown: true },
     { name: 'Smile School', path: '/learn' },
@@ -112,7 +112,7 @@ const Navbar = () => {
               THUKRAL
             </span>
             <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-text-muted mt-0.5">
-              Dental & Aesthetic Clinic
+              Dental Clinic
             </span>
           </div>
         </Link>
@@ -280,7 +280,7 @@ const Navbar = () => {
             />
             <div className="flex flex-col">
               <span className="font-serif font-bold text-xl tracking-wide leading-tight text-text">THUKRAL</span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-text-muted mt-0.5">Dental & Aesthetic</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-text-muted mt-0.5">Dental Clinic</span>
             </div>
           </Link>
           <button 

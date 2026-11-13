@@ -127,12 +127,12 @@ const AppointmentForm = () => {
             {/* Map Embed - Positioned directly below heading */}
             <div className="mb-8 w-full aspect-video bg-background-secondary border border-border rounded-lg overflow-hidden flex items-center justify-center shadow-xs">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d83155.20206765059!2d82.97306198908954!3d25.322048614237637!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e09989ce75f%3A0xfaa6fa6b95356a4f!2sThukral%20Dental%20%26%20Aesthetic%20Clinic!5e0!3m2!1sen!2sin!4v1790668813204!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d83155.20206765059!2d82.97306198908954!3d25.322048614237637!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398e2e09989ce75f%3A0xfaa6fa6b95356a4f!2sThukral%20Dental%20Clinic!5e0!3m2!1sen!2sin!4v1790668813204!5m2!1sen!2sin"
                 className="w-full h-full border-0"
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="strict-origin-when-cross-origin"
-                title="Thukral Dental & Aesthetic Clinic Location"
+                title="Thukral Dental Clinic Location"
               ></iframe>
             </div>
 
@@ -183,7 +183,7 @@ const AppointmentForm = () => {
                     <span className="text-xl leading-none mt-0.5">📲</span>
                     <div className="text-xs sm:text-sm text-amber-950 dark:text-amber-200 leading-relaxed font-light">
                       <strong className="font-semibold text-amber-900 dark:text-amber-100">Final Step Required: </strong>
-                      Please switch to the WhatsApp chat window and press <strong className="font-semibold underline">Send</strong> to deliver your appointment request to Thukral Dental &amp; Aesthetic Clinic.
+                      Please switch to the WhatsApp chat window and press <strong className="font-semibold underline">Send</strong> to deliver your appointment request to Thukral Dental Clinic.
                     </div>
                   </div>
                 </div>
